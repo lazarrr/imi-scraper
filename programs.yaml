@@ -1,0 +1,195 @@
+# Program-version registry — AUTHORITATIVE labels for tabbed program pages.
+#
+# Every chunk from a listed panel (and from panels nested inside it, unless
+# they have their own entry) gets this version: label, accreditation year,
+# status and modules.  This is what keeps "2 modules" (2026) and "3 modules"
+# (2019) apart.
+#
+# Fields
+#   page               canonical page URL
+#   program / level    level: osnovne | master | doktorske
+#   version_label      shown in every chunk header and in the version map
+#   accreditation_year as stated on the site (null if unknown)
+#   enrollment_from    first enrollment year (2026 = "upis 2026/27")
+#   enrollment_to      last enrollment year; leave empty → inferred from the
+#                      next version's enrollment_from - 1
+#   status             optional override: enrolling | phase_out | upcoming | legacy
+#                      (otherwise computed from the years and today's date)
+#   modules            module names exactly as on the page (checked against it)
+#   panels             tab panel ids on that page (see report.md → section ids)
+#
+# DeepSeek proposes entries for unmapped panels in programs.draft.yaml —
+# review them and move them here.
+#
+# Pre-filled 2026-10-10 from the live HTML. Entries marked TODO need a human
+# check (years not stated explicitly on the page).
+
+# ── Informatika ──────────────────────────────────────────────────────────
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: osnovne
+  version_label: OAS Informatika — akreditacija 2026
+  accreditation_year: 2026          # vest 11836: "akreditovan u februaru 2026. godine"
+  enrollment_from: 2026             # tab "Osnovne (Upis 2026/27)"
+  modules: [Računarske nauke, Softversko inženjerstvo]
+  panels: [panel3inf_u_akreditaciji, panel2026rac_nauke, panel2026sof_inz]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: osnovne
+  version_label: OAS Informatika — akreditacija 2019
+  accreditation_year: 2019          # TODO verify — course codes "19.*", master tab says "akreditovane 2019"
+  enrollment_from: 2019             # TODO verify
+  modules: [Računarske nauke, Softversko inženjerstvo, Informaciono-komunikacione tehnologije]
+  panels: [panel3inf, panel2019rac_nauke, panel2019sof_inz, panel2019inf_kom_teh]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: osnovne
+  version_label: OAS Informatika — akreditacija 2016 sa izmenama
+  accreditation_year: 2016
+  status: legacy
+  panels: [panel18inf]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: osnovne
+  version_label: OAS Informatika — akreditacija 2016
+  accreditation_year: 2016
+  status: legacy
+  panels: [panel8inf]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: osnovne
+  version_label: OAS Informatika — akreditacija 2011
+  accreditation_year: 2011
+  status: legacy
+  panels: [panel6inf]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: master
+  version_label: MAS Informatika — akreditacija 2026
+  accreditation_year: 2026          # "Akreditovan je novi studijski program Master akademskih studija Informatike"
+  enrollment_from: 2026             # "čija će realizacija početi školske 2026/27. godine"
+  modules: [Veštačka inteligencija, Računarske nauke]
+  panels: [panel4inf_u_akreditaciji, panel4inf, panel2026mas_vestacka_inteligencija, panel2026mas_rac_nauke]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: master
+  version_label: MAS Informatika — akreditacija 2019
+  accreditation_year: 2019          # tab "Master akademske studije akreditovane 2019"
+  enrollment_from: 2019
+  modules: [Nauka o podacima, Računarske nauke]
+  panels: [panel2019mas_nauk_o_podacima, panel2019mas_rac_nauke]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: master
+  version_label: MAS Informatika — akreditacija 2016 sa izmenama
+  accreditation_year: 2016
+  status: legacy
+  panels: [panel17inf]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: master
+  version_label: MAS Informatika — akreditacija 2016
+  accreditation_year: 2016
+  status: legacy
+  panels: [panel7inf]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: master
+  version_label: MAS Informatika — akreditacija 2011
+  accreditation_year: 2011
+  status: legacy
+  panels: [panel9inf]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: doktorske
+  version_label: DAS Informatika (računarske nauke) — akreditacija 2020
+  accreditation_year: 2020
+  enrollment_from: 2020
+  panels: [paneldok2020]
+
+- page: https://imi.pmf.kg.ac.rs/informatika-studije
+  program: Informatika
+  level: doktorske
+  version_label: DAS Informatika (računarske nauke) — akreditacija 2014
+  accreditation_year: 2014
+  enrollment_from: 2014
+  panels: [paneldok2014]
+
+# ── Matematika ───────────────────────────────────────────────────────────
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: osnovne
+  version_label: OAS Matematika — program za upis od 2027/28
+  accreditation_year: null          # TODO verify
+  enrollment_from: 2027             # tab "Osnovne (Upis 2027/28)"
+  panels: [panel3_u_akreditaciji]
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: osnovne
+  version_label: OAS Matematika — važeći program
+  accreditation_year: null          # TODO verify, then remove the status override
+  status: enrolling
+  modules: [Teorijska matematika i primene, Računarstvo i primenjena matematika, Profesor matematike]
+  panels: [panel3, panel2019rac_nauke, panel2019sof_inz, panel2019inf_kom_teh]
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: osnovne
+  version_label: OAS Matematika — akreditacija 2016 sa izmenama
+  accreditation_year: 2016
+  status: legacy
+  panels: [panel18]
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: osnovne
+  version_label: OAS Matematika — akreditacija 2011
+  accreditation_year: 2011
+  status: legacy
+  panels: [panel6]
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: master
+  version_label: MAS Matematika — važeći program
+  accreditation_year: null          # TODO verify (course codes "22.*")
+  status: enrolling
+  modules: [Profesor matematike, Teorijska matematika i primene, Računarstvo i primenjena matematika]
+  panels: [panel4, panel23pm, panel23tmip, panel23ripm]
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: master
+  version_label: MAS Matematika — akreditacija 2016 sa izmenama
+  accreditation_year: 2016
+  status: legacy
+  panels: [panel17]
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: master
+  version_label: MAS Matematika — akreditacija 2011
+  accreditation_year: 2011
+  status: legacy
+  panels: [panel9]
+
+- page: https://imi.pmf.kg.ac.rs/matematika-studije
+  program: Matematika
+  level: doktorske
+  version_label: DAS Matematika — akreditacija 2021
+  accreditation_year: 2021          # "Studijski program doktorskih akademskih studija matematike akreditovanih 2021"
+  enrollment_from: 2021
+  panels: [panel5]

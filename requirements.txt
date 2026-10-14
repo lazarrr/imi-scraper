@@ -1,0 +1,23 @@
+# Fetching & parsing
+requests>=2.32.0             # HTTP client
+beautifulsoup4>=4.13.0       # HTML parsing
+lxml>=6.0.0                  # Fast HTML parser backend
+trafilatura>=2.0.0           # Generic main-content extraction (non-IMI layouts)
+pdfplumber>=0.11.0           # PDF text extraction (per page)
+python-docx>=1.1.0           # Word documents
+cyrtranslit>=1.1.0           # Serbian Cyrillic -> Latin (same lib as the chatbot)
+
+# LLM validation / enrichment (DeepSeek, OpenAI-compatible API)
+openai>=1.40.0
+
+# Config & schemas
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
+pyyaml>=6.0
+
+# Embeddings & vector store — must match the chatbot (C:\Projects\imiChat)
+sentence-transformers>=3.0.0 # intfloat/multilingual-e5-large
+chromadb==1.5.9              # keep this pin identical in both projects
+
+# Dev
+pytest>=8.0.0

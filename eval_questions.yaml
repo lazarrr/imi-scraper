@@ -1,0 +1,47 @@
+# Golden questions for `python run.py eval` (hit@k / MRR).
+# A result counts as a hit if ANY listed substring appears in its
+#   url        → metadata url / page_url
+#   breadcrumb → metadata breadcrumb / version_label
+#   text       → the stored document
+# Matching ignores case, diacritics and Cyrillic/Latin script.
+
+- question: Koliko modula ima informatika?
+  expect:
+    breadcrumb: [Pregled verzija, Upis 2026/27]
+    text: [dva izborna modula]
+
+- question: Koji su moduli na osnovnim studijama informatike?
+  expect:
+    breadcrumb: [Pregled verzija, Upis 2026/27]
+
+- question: Koliko ESPB ima predmet Osnovi programiranja?
+  expect:
+    text: ["Predmet: Osnovi programiranja"]
+
+- question: Koji moduli postoje na master studijama informatike?
+  expect:
+    text: [Veštačka inteligencija]
+
+- question: Kada počinje novi master program informatike?
+  expect:
+    text: [2026/27]
+
+- question: Koliko traju doktorske studije informatike?
+  expect:
+    text: [traju 3 godine, 180 ESPB]
+
+- question: Koji su smerovi na osnovnim studijama matematike?
+  expect:
+    text: [Teorijska matematika i primene, Računarstvo i primenjena matematika]
+
+- question: Koji program matematike važi za upis 2027/28?
+  expect:
+    breadcrumb: [Upis 2027/28, upis od 2027/28]
+
+- question: Koje zvanje stiče student modula Softversko inženjerstvo?
+  expect:
+    text: [Diplomirani informatičar – softversko inženjerstvo]
+
+- question: Koji su predmeti bili na programu informatike akreditovanom 2011. godine?
+  expect:
+    breadcrumb: [akreditovane 2011, akreditacija 2011]

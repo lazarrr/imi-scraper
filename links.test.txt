@@ -1,0 +1,6 @@
+# Small set for trying the pipeline end to end:
+#   python run.py ingest --links links.test.txt --dry-run --no-llm
+#   python run.py ingest --links links.test.txt --collection university_knowledge_test
+https://imi.pmf.kg.ac.rs/informatika-studije
+https://imi.pmf.kg.ac.rs/matematika-studije
+https://imi.pmf.kg.ac.rs/vesti/11836-novi-smerovi-na-oas-matematike-i-oas-informatike

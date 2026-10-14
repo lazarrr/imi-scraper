@@ -1,0 +1,67 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Links to crawl — one per line.  Only these pages are fetched.
+#
+#  Options after " | ":
+#     depth=N     also follow same-domain links N levels deep (default 0)
+#     docs=true   also fetch linked PDF/DOCX matching CRAWL_DOC_PATTERNS (/pub/)
+#  Local PDF/DOCX files can be listed by path.
+#
+#  Pre-filled from the old crawl history (?osnovne/?master/?doktorske variants
+#  removed — they are the same page).  Comment out (#) what you do not want.
+#  After removing a page that was already indexed:  python run.py remove <url>
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Studije ─────────────────────────────────────────────────────────────────
+https://imi.pmf.kg.ac.rs/studijski-programi
+https://imi.pmf.kg.ac.rs/informatika-studije
+https://imi.pmf.kg.ac.rs/matematika-studije
+https://imi.pmf.kg.ac.rs/upis-studije
+https://imi.pmf.kg.ac.rs/brucosi
+https://imi.pmf.kg.ac.rs/strucna-praksa
+https://imi.pmf.kg.ac.rs/uslovni-predmeti
+https://imi.pmf.kg.ac.rs/ppm-grupa-predmeta
+https://imi.pmf.kg.ac.rs/zavrsni-master-matematika
+https://imi.pmf.kg.ac.rs/zavrsni-master-informatika
+https://imi.pmf.kg.ac.rs/rasporedi
+https://imi.pmf.kg.ac.rs/raspored-ispita
+https://imi.pmf.kg.ac.rs/oglasna-tabla
+https://imi.pmf.kg.ac.rs/pub/4491abb803e5f117a62711678199d0c6_12062024_103338/Информација о полагању диференцијалних испита.pdf
+
+# ── Institut ────────────────────────────────────────────────────────────────
+https://imi.pmf.kg.ac.rs/
+https://imi.pmf.kg.ac.rs/o-institutu
+https://imi.pmf.kg.ac.rs/nastavno-osoblje
+https://imi.pmf.kg.ac.rs/kontakt
+https://imi.pmf.kg.ac.rs/index.php?id=15845
+https://imi.pmf.kg.ac.rs/index.php?id=783
+https://imi.pmf.kg.ac.rs/index.php?id=782
+https://imi.pmf.kg.ac.rs/index.php?id=13671
+https://imi.pmf.kg.ac.rs/index.php?id=13938
+https://imi.pmf.kg.ac.rs/index.php?id=13940
+https://imi.pmf.kg.ac.rs/office365
+
+# ── Istraživanje i događaji ─────────────────────────────────────────────────
+https://imi.pmf.kg.ac.rs/projekti-istrazivanja-i-razvoj
+https://imi.pmf.kg.ac.rs/publikacije-istrazivanja-i-razvoj
+https://imi.pmf.kg.ac.rs/seminar-scimi-istrazivanja-i-razvoj
+https://imi.pmf.kg.ac.rs/imi-blog
+https://imi.pmf.kg.ac.rs/TEMATCOM2026
+https://imi.pmf.kg.ac.rs/kongres
+https://imi.pmf.kg.ac.rs/cemio
+https://imi.pmf.kg.ac.rs/ceramo
+# http://imi.pmf.kg.ac.rs/mozesit/
+# http://imi.pmf.kg.ac.rs/dms/
+
+# ── Vesti ───────────────────────────────────────────────────────────────────
+# https://imi.pmf.kg.ac.rs/vesti | depth=1        ← all news linked from the listing
+https://imi.pmf.kg.ac.rs/vesti/11836-novi-smerovi-na-oas-matematike-i-oas-informatike
+https://imi.pmf.kg.ac.rs/vesti/18831-stipendirane-doktorske-studije-na-univerzitetu-u-delaveru-sad
+https://imi.pmf.kg.ac.rs/vesti/18826-istrazivacka-praksa-u-matematickom-institutu-sanu
+https://imi.pmf.kg.ac.rs/vesti/18823-otvorene-prijave-za-parkup
+https://imi.pmf.kg.ac.rs/vesti/18785-raspisan-konkurs-za-stipendije-za-nedostajuca-zanimanja-u-prosveti-za-skolsku-20262027-godine
+https://imi.pmf.kg.ac.rs/vesti/18742-inovatec-letnja-praksa--iskustvo-koje-gradi-karijeru
+https://imi.pmf.kg.ac.rs/vesti/18661-engage-2hackathon
+https://imi.pmf.kg.ac.rs/vesti/5743-naslov.html
+
+# ── Lokalni dokumenti ───────────────────────────────────────────────────────
+C:/Projects/imiChat/data/raw/konkurs2026.pdf
