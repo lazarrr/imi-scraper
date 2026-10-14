@@ -1,0 +1,67 @@
+# Conda environment for the IMI scraper.
+#
+#   conda env create -f environment.yml
+#   conda activate imi
+#
+# Versions are pinned to the ones already proven by the sibling
+# `university-scraper` project (its `uni` conda environment), so the two
+# scrapers and the chatbot all agree on the embedding stack.
+#
+# Most Python packages come from PyPI via requirements.txt, which stays the
+# single source of truth.  `numpy`/`scipy` come from conda-forge and `torch`
+# is pinned, on purpose -- see the notes next to them.
+
+name: imi
+
+channels:
+  - conda-forge
+
+dependencies:
+  # `chromadb` 1.5.9 ships wheels up to CPython 3.10/3.11; 3.10 is what the
+  # `uni` environment uses, so stay on it to avoid a source build.
+  - python=3.10
+  - pip>=24.0
+  - setuptools>=68
+  - wheel
+
+  # ── numpy/scipy: conda-forge, NOT PyPI ────────────────────────────────
+  # The PyPI `scipy` 1.15.3 macOS-arm64 wheel cannot be dlopen'd on
+  # macOS 27 (Tahoe): the linker rejects `_spropack.cpython-310-darwin.so`
+  # with "section '__DATA/__thread_bss' has a zero-fill section type, but
+  # offset field is not zero", which breaks `scikit-learn` and therefore
+  # `sentence-transformers`/`chromadb`.  conda-forge builds the same
+  # version correctly, and `numpy` is kept alongside it so the two agree
+  # on the same BLAS/runtime.
+  - numpy=2.2.6
+  - scipy=1.15.3
+
+  # `constraints.txt` stops pip's transitive deps (chromadb, sentence-
+  # transformers, ...) from reinstalling numpy/scipy from PyPI and
+  # re-breaking the linker issue above, and pins `torch` to the version whose
+  # bundled libomp does not clash with conda-forge's `llvm-openmp`.
+  - pip:
+      - "-c constraints.txt"
+      - torch==2.12.0
+      # Fetching & parsing
+      - requests>=2.32.0
+      - beautifulsoup4>=4.13.0
+      - lxml>=6.0.0
+      - trafilatura>=2.0.0
+      - pdfplumber>=0.11.0
+      - python-docx>=1.1.0
+      - cyrtranslit>=1.1.0
+
+      # LLM validation / enrichment (DeepSeek, OpenAI-compatible API)
+      - openai>=1.40.0
+
+      # Config & schemas
+      - pydantic>=2.8.0
+      - pydantic-settings>=2.4.0
+      - pyyaml>=6.0
+
+      # Embeddings & vector store — must match the chatbot (imiChat)
+      - sentence-transformers>=3.0.0   # intfloat/multilingual-e5-large
+      - chromadb==1.5.9                # keep this pin identical in both projects
+
+      # Dev
+      - pytest>=8.0.0

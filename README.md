@@ -1,6 +1,6 @@
 # IMI scraper → DeepSeek → ChromaDB
 
-Fills the ChromaDB collection used by the chatbot (`C:\Projects\imiChat`)
+Fills the ChromaDB collection used by the chatbot (`imiChat`)
 from the pages **you list in `links.txt`**.  Every chunk is labeled with
 *where* it is (page › tab › sub-tab, a link that opens that tab, PDF page)
 and *which study-program version* it belongs to, then validated and
@@ -19,11 +19,32 @@ enriched by **DeepSeek V4.1 Flash**.
 ## Setup
 
 ```bash
-cd C:\Projects\scraper
-python -m venv .venv
-.venv\Scripts\pip install -r requirements.txt
-copy .env.example .env          # then put your DEEPSEEK_API_KEY in .env
+conda env create -f environment.yml     # creates the `imi` env (Python 3.10)
+conda activate imi
+cp .env.example .env                    # then put your DEEPSEEK_API_KEY in .env
 ```
+
+`environment.yml` keeps `numpy`/`scipy` on conda-forge and everything else
+from PyPI, with `constraints.txt` vetoeing pip's transitive upgrades.  Both
+pins work around macOS-27 breakage in the *newest* PyPI wheels:
+
+| Package | Pin | Why |
+|---|---|---|
+| `scipy` | `1.15.3` (conda-forge) | the PyPI macOS-arm64 wheel fails to `dlopen` (`_spropack…so`: *"section `__DATA/__thread_bss` has a zero-fill section type, but offset field is not zero"*), which takes `scikit-learn` → `sentence-transformers` → `chromadb` down with it |
+| `torch` | `2.12.0` (PyPI) | 2.13+/2.14 bundle their own `libomp`, which collides with conda-forge's `llvm-openmp`: *"OMP: Error #15 … already initialized"*, and `KMP_DUPLICATE_LIB_OK=TRUE` segfaults mid-encode |
+
+Both are the versions proven working in the sibling `university-scraper`
+project.  On Linux/Windows neither pin is needed — drop them from
+`constraints.txt` and `environment.yml` if you hit a conflict.
+
+`DEEPSEEK_API_KEY` gets you the LLM enrichment; without it, `run.py ingest
+--no-llm` still works (registry + deterministic labels only).  Because
+`config/settings.py` reads `.env` via pydantic-settings, the key never has to
+be committed — `.env` is git-ignored.
+
+`VECTOR_DB_PATH` in `.env.example` points at a Windows path
+(`C:/Projects/imiChat/...`).  On another machine point it at the chatbot's
+real store, e.g. `VECTOR_DB_PATH=../university-chatbot/data/vector_store`.
 
 `chromadb` is pinned to `1.5.9` here **and** in the chatbot — keep them equal.
 The first real ingest downloads `intfloat/multilingual-e5-large` (~2.2 GB).
@@ -37,19 +58,19 @@ embeddings are cached, so later runs only embed what changed.
    Default: only that page.  Options: `https://… | depth=1 | docs=true`.
 2. **Try it without touching anything**:
    ```bash
-   .venv\Scripts\python run.py ingest --links links.test.txt --dry-run
+   python run.py ingest --links links.test.txt --dry-run
    ```
    Open `data/reports/<time>/report.md`: sections per page with version,
    status and link, what was **not** indexed and why, version maps,
    DeepSeek issues, chunk previews, token cost.
 3. **Index into a test collection** and query it like the chatbot does:
    ```bash
-   .venv\Scripts\python run.py ingest --links links.test.txt --collection university_knowledge_test
-   .venv\Scripts\python run.py search "Koliko modula ima informatika?" --collection university_knowledge_test
-   .venv\Scripts\python run.py eval --collection university_knowledge_test
+   python run.py ingest --links links.test.txt --collection university_knowledge_test
+   python run.py search "Koliko modula ima informatika?" --collection university_knowledge_test
+   python run.py eval --collection university_knowledge_test
    ```
    To chat against it: `CHROMA_COLLECTION=university_knowledge_test` in the chatbot's `.env`.
-4. **Production**: `.venv\Scripts\python run.py` (= `ingest`, all of `links.txt`).
+4. **Production**: `python run.py` (= `ingest`, all of `links.txt`).
    **Stop / restart the chatbot around an ingest** (Chroma's local mode is
    not multi-process safe; each process caches the index).
 
@@ -118,7 +139,20 @@ page's own text plus a deterministic header.
 ## Tests
 
 ```bash
-.venv\Scripts\python -m pytest
+conda activate imi
+python -m pytest
 ```
 
 Offline (saved pages in `tests/fixtures`, fake DeepSeek / embedder, real Chroma in a temp dir).
+
+The one exception is `tests/test_deepseek_live.py`, which calls the **real**
+API.  It is skipped unless you opt in, so `pytest` never needs network or a key:
+
+```bash
+RUN_LIVE_LLM=1 python -m pytest tests/test_deepseek_live.py -v -s
+```
+
+Use it to check a new key or a changed `DEEPSEEK_MODEL`: it asserts the key
+authenticates, the model accepts the client's combined request shape, the
+reply validates against the real `EnrichmentBatch` schema, and that the
+SQLite cache serves the second identical call without another API hit.

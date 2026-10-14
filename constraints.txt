@@ -1,0 +1,21 @@
+# Keep pip from replacing the conda-forge builds of the numeric stack.
+#
+# `conda env create -f environment.yml` installs these from conda-forge
+# because the PyPI `scipy` 1.15.3 macOS-arm64 wheel cannot be dlopen'd on
+# macOS 27.  pip pulls numpy/scipy in transitively (chromadb,
+# sentence-transformers, scikit-learn) and would otherwise overwrite the
+# working conda-forge copies with the broken ones.
+#
+# Used via `pip: - -c constraints.txt` in environment.yml and:
+#     pip install -c constraints.txt -r requirements.txt
+numpy==2.2.6
+scipy==1.15.3
+
+# The PyPI `torch` 2.13+/2.14 wheels bundle their own libomp, which clashes
+# with the conda-forge `llvm-openmp` that numpy/scipy link against:
+#   "OMP: Error #15: Initializing libomp.dylib, but found libomp.dylib
+#    already initialized"
+# `KMP_DUPLICATE_LIB_OK=TRUE` only papers over it -- here it segfaults
+# (exit 139) mid-encode.  2.12.0 is the version proven working in the
+# sibling `university-scraper` `uni` environment, so stay on it.
+torch==2.12.0
