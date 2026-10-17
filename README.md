@@ -42,9 +42,25 @@ project.  On Linux/Windows neither pin is needed — drop them from
 `config/settings.py` reads `.env` via pydantic-settings, the key never has to
 be committed — `.env` is git-ignored.
 
-`VECTOR_DB_PATH` in `.env.example` points at a Windows path
-(`C:/Projects/imiChat/...`).  On another machine point it at the chatbot's
-real store, e.g. `VECTOR_DB_PATH=../university-chatbot/data/vector_store`.
+### Where the vector DB lives
+
+The Chroma index is **inside this project**: `data/vector_store/`
+(`VECTOR_DB_PATH=./data/vector_store` in `.env`).  Nothing has to be copied in
+from another checkout any more — `python run.py ingest` creates the folder on
+the first run and writes every chunk there.  Relative paths resolve against the
+project root, so it works from any working directory.  See
+[`data/vector_store/README.md`](data/vector_store/README.md) for what the files
+are.
+
+To share **one** index with the chatbot instead, point `VECTOR_DB_PATH` in
+*both* projects at the same absolute path — e.g.
+`VECTOR_DB_PATH=../university-chatbot/data/vector_store`.  The folder layout,
+the cosine space and the E5 `passage: `/`query: ` prefixes are identical in
+both projects, so either direction works.
+
+`data/` is git-ignored (the index is a build artifact); only the folder's
+README is tracked.  Deleting the folder is a safe "start over" — the next
+ingest rebuilds it, and raw pages stay cached in `data/cache/http`.
 
 `chromadb` is pinned to `1.5.9` here **and** in the chatbot — keep them equal.
 The first real ingest downloads `intfloat/multilingual-e5-large` (~2.2 GB).
@@ -86,8 +102,91 @@ embeddings are cached too, so re-runs are cheap).  `--force` re-processes.
 | `ingest --keep-low-value` / `--include-unreachable` | keep what is normally dropped |
 | `search "pitanje" [-k 5] [--include-legacy]` | chatbot-identical retrieval, prints chunks + distances |
 | `eval [--file eval_questions.yaml]` | golden questions → hit@k / MRR |
+| `ui [--collection N] [--db-path P] [--build]` | Flutter desktop app for visualising retrieval |
 | `stats` | counts by status / page type / page |
 | `remove <url or path>` | delete one page's chunks |
+
+## Retrieval explorer (Flutter desktop app)
+
+`ui/retrieval_explorer` is a macOS desktop app that shows **what the vector
+store actually returns** for a question — the top-k chunks, each fully
+structured, plus the candidates the retrieval policy threw away and why.
+
+```bash
+python run.py ui                        # starts the local API and opens the app
+python run.py ui --build                # …and builds the release .app first
+python run.py ui --db-path data/local_test_store \
+                 --collection university_knowledge_local_test
+python tools/retrieval_api.py           # backend only (any OS, no Flutter needed)
+```
+
+![retrieval explorer](docs/retrieval_explorer.png)
+
+Each of the 5 result cards shows:
+* **rank badge + similarity %** (colour-coded ramp) and a score bar with a
+  marker at the similarity threshold, plus the raw cosine distance
+* the **breadcrumb / page title** and the exact **URL**, with copy and
+  "open in browser" buttons
+* **tags** — `doc_kind`, program `status`, `outdated`, `version_label`,
+  `block_type`, `embed_truncated`
+* the **chunk text** with your query terms highlighted (diacritic-insensitive,
+  so `skolarina` highlights `Školarina`), expandable to the complete embedded
+  text — i.e. exactly the string the vector was built from
+* **metadata chips** (keywords, quality, model, ingest time…) and a full
+  key/value metadata table behind "Show metadata":
+
+![metadata table](docs/retrieval_explorer_metadata.png)
+
+The right rail has three tabs:
+
+| Tab | Contents |
+|---|---|
+| **Filtered out** | every rejected candidate grouped by reason — `below_threshold`, `legacy_or_outdated`, `duplicate`, `beyond_k` — with its score and the rule that dropped it |
+| **Run** | the query funnel (returned → kept / below threshold / legacy / duplicate / beyond-k), timings for the E5 encode and the Chroma query, the `where` metadata filter, and the raw JSON |
+| **Store** | the store folder, chunk count, on-disk size, embedding model and prefixes, the collections inside the folder, and facet counts + pages (loads on demand) |
+
+Controls: top-k selector (3/5/8/10/20), threshold slider, "include legacy /
+outdated" switch, collection selector, ⌘R to re-run, Enter to search.
+
+### How it is wired
+
+```
+Flutter app (ui/retrieval_explorer)          Python backend (tools/retrieval_api.py)
+  lib/api_client.dart  ──── HTTP JSON ────▶  GET  /api/health    store + collections + readiness
+  lib/main.dart                               POST /api/search    results + rejected + timings
+  lib/widgets/*                               GET  /api/stats     facet counts
+                                              GET  /api/chunk/<id>
+```
+
+The backend is `http.server` + the *same* `RetrievalService` the CLI uses, so
+the app cannot disagree with `python run.py search`; no web framework is
+installed for it.  The E5 model is preloaded in a background thread at startup
+(`--no-warm` disables that), which is why the header shows *loading E5 model…*
+for the first few seconds.
+
+Building the app needs the Flutter SDK (3.44+) and Xcode command-line tools:
+
+```bash
+cd ui/retrieval_explorer
+flutter pub get
+flutter test                      # parsing + widget tests, no backend needed
+flutter build macos --debug       # → build/macos/Build/Products/Debug/*.app
+```
+
+`python run.py ui` uses an already built binary when one exists (Release, then
+Debug), otherwise it falls back to `flutter run -d macos`.  The screenshots
+above are regenerated with:
+
+```bash
+flutter test test/golden_capture.dart --update-goldens   # → ../../../docs/*.png
+```
+
+`release_unpack_macos` (the tool's universal-binary step) currently fails on
+Xcode 27 with *"does not contain architectures arm64 x86_64"* — a Flutter
+toolchain issue, not a project one; the debug bundle is a full desktop app and
+is what `run.py ui` picks up here.  `MACOSX_DEPLOYMENT_TARGET` is pinned to
+12.0 in `macos/Runner.xcodeproj` and forced onto every pod in `macos/Podfile`,
+because Flutter's default 10.15 is outside Xcode 27's supported range.
 
 ## Program versions — `programs.yaml`
 
@@ -140,7 +239,8 @@ page's own text plus a deterministic header.
 
 ```bash
 conda activate imi
-python -m pytest
+python -m pytest                 # scraper: offline, fixtures + fake DeepSeek/embedder
+python tools/vector_store_demo.py   # smoke test: writes + queries the project's Chroma folder
 ```
 
 Offline (saved pages in `tests/fixtures`, fake DeepSeek / embedder, real Chroma in a temp dir).
@@ -156,3 +256,15 @@ Use it to check a new key or a changed `DEEPSEEK_MODEL`: it asserts the key
 authenticates, the model accepts the client's combined request shape, the
 reply validates against the real `EnrichmentBatch` schema, and that the
 SQLite cache serves the second identical call without another API hit.
+
+The desktop app has its own tests:
+
+```bash
+cd ui/retrieval_explorer
+flutter test                     # parsing + widget tests, no backend needed
+flutter test test/live_api_test.dart   # end-to-end against a running tools/retrieval_api.py
+```
+
+`test/live_api_test.dart` skips itself when nothing is listening on
+`127.0.0.1:8765`, so it is safe to run in a loop; start the backend with
+`python tools/retrieval_api.py --no-warm` to exercise it.

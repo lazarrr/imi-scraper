@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "chunks": 747,
+  "pages": 1,
+  "facets": {
+    "doc_kind": {
+      "chunk": 744,
+      "version_map": 3
+    },
+    "page_type": {
+      "studijski_program": 747
+    },
+    "status": {
+      "legacy": 351,
+      "enrolling": 205,
+      "phase_out": 169,
+      "—": 22
+    },
+    "type": {
+      "web": 747
+    },
+    "version_label": {
+      "OAS Informatika — akreditacija 2019": 137,
+      "OAS Informatika — akreditacija 2026": 135,
+      "OAS Informatika — akreditacija 2016 sa izmenama": 98,
+      "OAS Informatika — akreditacija 2011": 91,
+      "OAS Informatika — akreditacija 2016": 89,
+      "DAS Informatika (računarske nauke) — akreditacija 2020": 40,
+      "MAS Informatika — akreditacija 2019": 32,
+      "MAS Informatika — akreditacija 2026": 30,
+      "DAS Informatika (računarske nauke) — akreditacija 2014": 24,
+      "—": 22,
+      "MAS Informatika — akreditacija 2011": 18,
+      "MAS Informatika — akreditacija 2016 sa izmenama": 16,
+      "MAS Informatika — akreditacija 2016": 15
+    }
+  },
+  "top_pages": [
+    {
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "chunks": 747
+    }
+  ]
+}

@@ -10,8 +10,13 @@ venv/
 .env.*
 !.env.example
 
-# Runtime data: caches, ingest state, reports, local test stores
-data/
+# Runtime data: caches, ingest state, reports, local vector stores.
+# The Chroma index lives in data/vector_store/ and stays out of git; only its
+# README is kept so the folder is documented after a fresh clone.
+data/*
+!data/vector_store/
+data/vector_store/*
+!data/vector_store/README.md
 
 # Generated DeepSeek proposals — review, then move entries into programs.yaml
 programs.draft.yaml

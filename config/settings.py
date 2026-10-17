@@ -47,8 +47,12 @@ class Settings(BaseSettings):
     EMBED_MAX_TOKENS: int = 512                 # E5 limit incl. "passage: " + special tokens
     EMBED_QUESTIONS: bool = True                # add DeepSeek questions to the embedded text
 
-    # ── Vector DB (shared with the chatbot) ──────────────────────────── #
-    VECTOR_DB_PATH: str = "../imiChat/data/vector_store"
+    # ── Vector DB ────────────────────────────────────────────────────── #
+    # Default: a store INSIDE this project (data/vector_store), so a plain
+    # `python run.py ingest` writes here and nothing has to be copied in
+    # from another checkout.  Set VECTOR_DB_PATH to the chatbot's folder
+    # (e.g. ../university-chatbot/data/vector_store) to share one index.
+    VECTOR_DB_PATH: str = "./data/vector_store"
     CHROMA_COLLECTION: str = "university_knowledge"
 
     # ── Crawling ─────────────────────────────────────────────────────── #
@@ -76,6 +80,10 @@ class Settings(BaseSettings):
     TOP_K_RESULTS: int = 5
     RETRIEVAL_FETCH_K: int = 20
     SIMILARITY_THRESHOLD: float = 0.7
+
+    # ── Retrieval UI (Flutter desktop app + local JSON API) ──────────── #
+    UI_HOST: str = "127.0.0.1"
+    UI_PORT: int = 8765
 
     model_config = SettingsConfigDict(
         env_file=str(PROJECT_ROOT / ".env"),

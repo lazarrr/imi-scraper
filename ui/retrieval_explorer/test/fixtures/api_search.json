@@ -1,0 +1,1654 @@
+{
+  "ok": true,
+  "query": "Koliko traje master studije informatike?",
+  "normalized_query": "Koliko traje master studije informatike?",
+  "k": 5,
+  "threshold": 0.7,
+  "include_legacy": false,
+  "where_filter": {
+    "$and": [
+      {
+        "status": {
+          "$ne": "legacy"
+        }
+      },
+      {
+        "outdated": {
+          "$ne": true
+        }
+      }
+    ]
+  },
+  "store": {
+    "path": "data/local_test_store",
+    "collection": "university_knowledge_local_test",
+    "count": 747,
+    "embedding_model": "intfloat/multilingual-e5-large",
+    "distance": "cosine",
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: ",
+    "threshold": 0.7,
+    "fetch_k": 20,
+    "collections": [
+      {
+        "name": "university_knowledge_local_test",
+        "count": 747,
+        "active": true
+      }
+    ]
+  },
+  "timing": {
+    "embed_ms": 114.8,
+    "query_ms": 5.6,
+    "total_ms": 121.3
+  },
+  "counts": {
+    "fetched": 20,
+    "kept": 5,
+    "rejected": 15,
+    "below_threshold": 0,
+    "legacy_or_outdated": 0,
+    "duplicate": 0,
+    "beyond_k": 15
+  },
+  "results": [
+    {
+      "id": "e2864d5f82-f701c714-008",
+      "document": "[Informatika › Česta pitanja]\nIskustva nekih od njih možete videti ovde.\n• Da li mogu da nastavim školovanje?\nNakon završenih Osnovnih akademskih studija Informatike, student ima mogućnost upisa na Master akademske studije Informatike u Institutu za matematiku i informatiku koje čine prirodni nastavak osnovih studija. Master studije traju jednu godinu (2 semestra, 60 ESPB).",
+      "metadata": {
+        "ingested_at": "2026-10-14T21:50:06",
+        "prompt_version": "2026-10-11.1",
+        "hidden_by_default": true,
+        "content_hash": "5cb4f3898abcefe5",
+        "outdated": false,
+        "doc_kind": "chunk",
+        "breadcrumb": "Informatika › Česta pitanja",
+        "ui_hidden": false,
+        "section_id": "panel_faq",
+        "quality": "ok",
+        "dedup_key": "bee620816c40c150",
+        "questions": "Da li mogu da nastavim školovanje nakon osnovnih studija?; Koliko traju master akademske studije Informatike?; Šta čini prirodni nastavak osnovnih studija?",
+        "filename": "Informatika › Česta pitanja",
+        "embed_truncated": false,
+        "block_type": "text",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "generated": false,
+        "context": "Deo sekcije Česta pitanja o nastavku školovanja nakon OAS Informatike, odnosno upisu na master studije.",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel_faq",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "type": "web",
+        "version_source": "none",
+        "page": 0,
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "page_title": "Informatika",
+        "keywords": "master studije; MAS Informatika; 60 ESPB; nastavak školovanja; IMI",
+        "page_type": "studijski_program",
+        "llm_model": "deepseek-flash"
+      },
+      "distance": 0.1051,
+      "similarity": 0.8949,
+      "reason": null,
+      "reason_detail": "",
+      "rank": 1,
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Česta pitanja",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "",
+      "body": "Iskustva nekih od njih možete videti ovde.\n• Da li mogu da nastavim školovanje?\nNakon završenih Osnovnih akademskih studija Informatike, student ima mogućnost upisa na Master akademske studije Informatike u Institutu za matematiku i informatiku koje čine prirodni nastavak osnovih studija. Master studije traju jednu godinu (2 semestra, 60 ESPB).",
+      "chars": 376,
+      "words": 54,
+      "reason_label": "",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "master studije; MAS Informatika; 60 ESPB; nastavak školovanja; IMI"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-f701c714-001",
+      "document": "[Informatika › Česta pitanja]\nNaravno! Softversko inženjerstvo je jedan od tri smera (izborna modula) za koji se možete opredeliti pri upisu na drugu godinu studija. Prva godina je zajednička za sve studente na studijskom programu.\n• Koji smerovi postoje na OAS Informatike?\nStudenti se opredeljuju za jedan od 3 smera (izborna modula) pri upisu na drugu godinu studija. Prva godina je zajednička za sve studente na studijskom programu.\nStudenti mogu izabrati jedan od sledećih modula:\n• Softversko inženjerstvo,\n• Računarske nauke,\n• Informaciono-komunikacione tehnologije.\nBez obzira na odabrani modul, studijski program osnovnih akademskih studija Informatike traje 4 godine (8 semestara,240 ESPB).\n• Koje zvanje se stiče nakon završenih studija?\nPo završetku studija, u zavisnosti od izabranog modula na OAS Informatike, student stiče jedan od sledećih stručnih naziva:\n• Diplomirani informatičar – računarske nauke,\n• Diplomirani informatičar – softversko inženjerstvo,\n• Diplomirani informatičar – informaciono-komunikacione tehnologije.\n• Kako mogu da postanem student Informatike?",
+      "metadata": {
+        "type": "web",
+        "keywords": "OAS Informatika; moduli; Softversko inženjerstvo; Računarske nauke; Informaciono-komunikacione tehnologije; 240 ESPB; stručni naziv",
+        "ingested_at": "2026-10-14T21:50:06",
+        "outdated": false,
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "section_id": "panel_faq",
+        "block_type": "text",
+        "ui_hidden": false,
+        "version_source": "none",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "issues": "navodi tri modula — odnosi se na stariji program upisa, proveriti aktuelnost",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel_faq",
+        "generated": false,
+        "questions": "Koji smerovi postoje na OAS Informatike?; Koliko traju osnovne akademske studije Informatike?; Koje zvanje se stiče nakon završetka OAS Informatike?",
+        "context": "Deo sekcije Česta pitanja o OAS Informatici; navodi module, trajanje studija i stručne nazive koji se stiču.",
+        "breadcrumb": "Informatika › Česta pitanja",
+        "page_type": "studijski_program",
+        "page": 0,
+        "prompt_version": "2026-10-11.1",
+        "hidden_by_default": true,
+        "llm_model": "deepseek-flash",
+        "embed_truncated": false,
+        "dedup_key": "db73da8d964699b8",
+        "doc_kind": "chunk",
+        "filename": "Informatika › Česta pitanja",
+        "quality": "ok",
+        "content_hash": "7209d6835f2c8e50",
+        "page_title": "Informatika"
+      },
+      "distance": 0.1161,
+      "similarity": 0.8839,
+      "reason": null,
+      "reason_detail": "",
+      "rank": 2,
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Česta pitanja",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "",
+      "body": "Naravno! Softversko inženjerstvo je jedan od tri smera (izborna modula) za koji se možete opredeliti pri upisu na drugu godinu studija. Prva godina je zajednička za sve studente na studijskom programu.\n• Koji smerovi postoje na OAS Informatike?\nStudenti se opredeljuju za jedan od 3 smera (izborna modula) pri upisu na drugu godinu studija. Prva godina je zajednička za sve studente na studijskom programu.\nStudenti mogu izabrati jedan od sledećih modula:\n• Softversko inženjerstvo,\n• Računarske nauke,\n• Informaciono-komunikacione tehnologije.\nBez obzira na odabrani modul, studijski program osnovnih akademskih studija Informatike traje 4 godine (8 semestara,240 ESPB).\n• Koje zvanje se stiče nakon završenih studija?\nPo završetku studija, u zavisnosti od izabranog modula na OAS Informatike, student stiče jedan od sledećih stručnih naziva:\n• Diplomirani informatičar – računarske nauke,\n• Diplomirani informatičar – softversko inženjerstvo,\n• Diplomirani informatičar – informaciono-komunikacione tehnologije.\n• Kako mogu da postanem student Informatike?",
+      "chars": 1088,
+      "words": 152,
+      "reason_label": "",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "OAS Informatika; moduli; Softversko inženjerstvo; Računarske nauke; Informaciono-komunikacione tehnologije; 240 ESPB; stručni naziv"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-bd6ec0c7-001",
+      "document": "[Informatika › Master | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nStruktura programa, uslovi upisa i ostale informacije o programu\nKnjige predmeta predviđenih programom\nUslovi za upis na master akademske studije informatike\nPRIJEMNI ISPITI\nPrijemni ispit za upis na master studije 2021. godine\nPrijemni ispit za upis na master studije 2023. godine\nNakon završenih Master akademskih studija informatike student stiče akademski naziv Master informatičar.\nStari programi:\n• Master akademske studije akreditovane 2011\n• Master akademske studije akreditovane 2016\n• Master akademske studije akreditovane 2016 sa izmenama\n• Master akademske studije akreditovane 2019 - Nauka o podacima,\n• Master akademske studije akreditovane 2019 - Računarske nauke.",
+      "metadata": {
+        "quality": "ok",
+        "prompt_version": "2026-10-11.1",
+        "doc_kind": "chunk",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "accreditation_year": 2026,
+        "section_id": "panel4inf",
+        "program": "Informatika",
+        "page_type": "studijski_program",
+        "context": "Deo stranice Informatika koji se odnosi na master akademske studije (MAS Informatika — akreditacija 2026, aktuelni program). Tekst navodi opšte informacije o strukturi programa, uslovima upisa, prijemnim ispitima i starijim akreditacijama.",
+        "level": "master",
+        "page": 0,
+        "outdated": false,
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "block_type": "text",
+        "hidden_by_default": true,
+        "type": "web",
+        "generated": false,
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "ui_hidden": false,
+        "keywords": "master akademske studije; Informatika; uslovi upisa; prijemni ispit; Master informatičar; stari programi; akreditacija 2019; Nauka o podacima",
+        "embed_truncated": false,
+        "status": "enrolling",
+        "breadcrumb": "Informatika › Master",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel4inf",
+        "filename": "Informatika › Master",
+        "valid_for": "upis od 2026/27",
+        "questions": "Koji akademski naziv stiče student nakon završenih master akademskih studija informatike?; Koji su uslovi za upis na master akademske studije informatike?; Koje su ranije akreditacije master studija informatike postojale?",
+        "content_hash": "e269080d992d5b2b",
+        "llm_model": "deepseek-flash",
+        "dedup_key": "a82d95f4cfecf10b",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "issues": "pominju se prijemni ispiti iz 2021. i 2023 — moguće zastarelo; lista starih programa bez dodatnih informacija",
+        "version_source": "registry",
+        "ingested_at": "2026-10-14T21:50:06",
+        "page_title": "Informatika"
+      },
+      "distance": 0.1196,
+      "similarity": 0.8804,
+      "reason": null,
+      "reason_detail": "",
+      "rank": 3,
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "Struktura programa, uslovi upisa i ostale informacije o programu\nKnjige predmeta predviđenih programom\nUslovi za upis na master akademske studije informatike\nPRIJEMNI ISPITI\nPrijemni ispit za upis na master studije 2021. godine\nPrijemni ispit za upis na master studije 2023. godine\nNakon završenih Master akademskih studija informatike student stiče akademski naziv Master informatičar.\nStari programi:\n• Master akademske studije akreditovane 2011\n• Master akademske studije akreditovane 2016\n• Master akademske studije akreditovane 2016 sa izmenama\n• Master akademske studije akreditovane 2019 - Nauka o podacima,\n• Master akademske studije akreditovane 2019 - Računarske nauke.",
+      "chars": 791,
+      "words": 113,
+      "reason_label": "",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "master akademske studije; Informatika; uslovi upisa; prijemni ispit; Master informatičar; stari programi; akreditacija 2019; Nauka o podacima"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-7968cd49-000",
+      "document": "[Informatika › Master (Upis 2026/27) | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nAkreditovan je novi studijski program Master akademskih studija Informatike čija će realizacija početi školske 2026/27. godine. Programom su predviđena dva izborna modula, za koji se studenti opredeljuju pri upisu:\n• VEŠTAČKA INTELIGENCIJA\nU modulu Veštačka inteligencija su u primarno zastupljeni predmeti kojima se studenti osposobljavaju za poslove koji zahtevaju analizu i istraživanje velikih količina podataka, kao i izvođenje zaključaka iz podataka, razvoj prediktivnih modela prilagođenih različitim industrijama, izradu i optimizaciju aplikacija veštačke inteligencije za različite oblasti ljudskog delovanja.\nPo završetku ovog modula student stiče zvanje Master informatičar – veštačka inteligencija.\n• RAČUNARSKE NAUKE\nModul Računarske nauke nudi mogućnost dubljeg upoznavanja i usavršavanja u odabranim oblastima računarskih nauka. Student je usmeren na razvoj analitičkog i apstraktnog mišljenja, razumevanje granica izračunljivosti i složenosti algoritama, kao i na primenu računarskih modela i simulacija, sistemima za rezonovanje u rešavanju složenih problema.\nPo završetku ovog modula student stiče zvanje Master informatičar – računarske nauke.\nStruktura programa, uslovi upisa i ostale informacije o programu\nKnjige predmeta predviđenih programom",
+      "metadata": {
+        "breadcrumb": "Informatika › Master (Upis 2026/27)",
+        "context": "Deo stranice Informatika koji opisuje novi master program Informatike (akreditacija 2026, upis od 2026/27), konkretno dva izborna modula i zvanja koja se stiču.",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel4inf_u_akreditaciji",
+        "version_source": "registry",
+        "keywords": "master Informatika; akreditacija 2026; upis 2026/27; Veštačka inteligencija; Računarske nauke; izborni moduli; Master informatičar",
+        "type": "web",
+        "llm_model": "deepseek-flash",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije?master_u_akreditaciji",
+        "questions": "Koji moduli postoje na master studijama Informatike od 2026/27?; Koje zvanje stiče student koji završi modul Veštačka inteligencija?; Čime se bavi modul Računarske nauke na master studijama?; Kada počinje realizacija novog master programa Informatike?",
+        "block_type": "text",
+        "ingested_at": "2026-10-14T21:50:06",
+        "page_type": "studijski_program",
+        "content_hash": "f879bc6d6a9bafbc",
+        "page_title": "Informatika",
+        "section_id": "panel4inf_u_akreditaciji",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "ui_hidden": true,
+        "level": "master",
+        "page": 0,
+        "valid_for": "upis od 2026/27",
+        "doc_kind": "chunk",
+        "hidden_by_default": true,
+        "embed_truncated": false,
+        "program": "Informatika",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "filename": "Informatika › Master (Upis 2026/27)",
+        "quality": "ok",
+        "accreditation_year": 2026,
+        "dedup_key": "e6fe037a47277ae8",
+        "prompt_version": "2026-10-11.1",
+        "generated": false,
+        "outdated": false,
+        "status": "enrolling"
+      },
+      "distance": 0.1258,
+      "similarity": 0.8742,
+      "reason": null,
+      "reason_detail": "",
+      "rank": 4,
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije?master_u_akreditaciji",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master (Upis 2026/27)",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "Akreditovan je novi studijski program Master akademskih studija Informatike čija će realizacija početi školske 2026/27. godine. Programom su predviđena dva izborna modula, za koji se studenti opredeljuju pri upisu:\n• VEŠTAČKA INTELIGENCIJA\nU modulu Veštačka inteligencija su u primarno zastupljeni predmeti kojima se studenti osposobljavaju za poslove koji zahtevaju analizu i istraživanje velikih količina podataka, kao i izvođenje zaključaka iz podataka, razvoj prediktivnih modela prilagođenih različitim industrijama, izradu i optimizaciju aplikacija veštačke inteligencije za različite oblasti ljudskog delovanja.\nPo završetku ovog modula student stiče zvanje Master informatičar – veštačka inteligencija.\n• RAČUNARSKE NAUKE\nModul Računarske nauke nudi mogućnost dubljeg upoznavanja i usavršavanja u odabranim oblastima računarskih nauka. Student je usmeren na razvoj analitičkog i apstraktnog mišljenja, razumevanje granica izračunljivosti i složenosti algoritama, kao i na primenu računarskih modela i simulacija, sistemima za rezonovanje u rešavanju složenih problema.\nPo završetku ovog modula student stiče zvanje Master informatičar – računarske nauke.\nStruktura programa, uslovi upisa i ostale informacije o programu\nKnjige predmeta predviđenih programom",
+      "chars": 1392,
+      "words": 183,
+      "reason_label": "",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "master Informatika; akreditacija 2026; upis 2026/27; Veštačka inteligencija; Računarske nauke; izborni moduli; Master informatičar"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "ui_hidden",
+          "value": "True"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-47ec6d3c-006",
+      "document": "[Informatika › Master › Računarske nauke | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nI godina — predmeti: Odabrana poglavlja matematike; Teorija izračunljivosti i računske kompleksnosti; Izborni predmet iz grupe R; Studijski istraživački rad 1; Izborni predmet iz grupe V; Stručna praksa; Studijski istraživački rad 2; Završni rad",
+      "metadata": {
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "valid_for": "upis od 2026/27",
+        "section_id": "panel2026mas_rac_nauke",
+        "content_hash": "c9c485fd2fc8e219",
+        "status": "enrolling",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "doc_kind": "chunk",
+        "embed_truncated": false,
+        "context": "Spisak predmeta prve godine master akademskih studija Informatika, modul Računarske nauke (akreditacija 2026). Navodi obavezne i izborne predmete, studijske istraživačke radove, stručnu praksu i završni rad.",
+        "level": "master",
+        "block_type": "table_overview",
+        "accreditation_year": 2026,
+        "program": "Informatika",
+        "hidden_by_default": true,
+        "page_title": "Informatika",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "ui_hidden": false,
+        "outdated": false,
+        "keywords": "predmeti prve godine; MAS Informatika; Računarske nauke; studijski istraživački rad; stručna praksa; završni rad; izborni predmeti",
+        "module": "Računarske nauke",
+        "ingested_at": "2026-10-14T21:50:06",
+        "prompt_version": "2026-10-11.1",
+        "quality": "ok",
+        "questions": "Koji su svi predmeti prve godine master studija Informatika, modul Računarske nauke?; Da li je stručna praksa obavezna na master studijama?; Koliko studijskih istraživačkih radova ima u prvoj godini master studija?",
+        "filename": "Informatika › Master › Računarske nauke",
+        "page": 0,
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_rac_nauke",
+        "llm_model": "deepseek-flash",
+        "page_type": "studijski_program",
+        "type": "web",
+        "generated": false,
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "breadcrumb": "Informatika › Master › Računarske nauke",
+        "dedup_key": "98dd6b20f7d5ab97",
+        "version_source": "registry"
+      },
+      "distance": 0.1316,
+      "similarity": 0.8684,
+      "reason": null,
+      "reason_detail": "",
+      "rank": 5,
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "I godina — predmeti: Odabrana poglavlja matematike; Teorija izračunljivosti i računske kompleksnosti; Izborni predmet iz grupe R; Studijski istraživački rad 1; Izborni predmet iz grupe V; Stručna praksa; Studijski istraživački rad 2; Završni rad",
+      "chars": 376,
+      "words": 56,
+      "reason_label": "",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "predmeti prve godine; MAS Informatika; Računarske nauke; studijski istraživački rad; stručna praksa; završni rad; izborni predmeti"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "id": "e2864d5f82-11d5b324-008",
+      "document": "[Informatika › Master › Veštačka inteligencija | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nI godina — predmeti: Odabrana poglavlja matematike; Mašinsko učenje; Duboko učenje; Obrada i analiza velikih količina podataka; Studijski istraživački rad 1; Izborni predmet iz grupe V; Stručna praksa; Studijski istraživački rad 2; Završni rad",
+      "metadata": {
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_vestacka_inteligencija",
+        "valid_for": "upis od 2026/27",
+        "context": "Sažetak liste predmeta prve godine master akademskih studija Informatika, modul Veštačka inteligencija (akreditacija 2026). Navodi sve predmete prve godine.",
+        "ingested_at": "2026-10-14T21:50:06",
+        "prompt_version": "2026-10-11.1",
+        "page_title": "Informatika",
+        "accreditation_year": 2026,
+        "filename": "Informatika › Master › Veštačka inteligencija",
+        "type": "web",
+        "module": "Veštačka inteligencija",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "hidden_by_default": true,
+        "status": "enrolling",
+        "ui_hidden": false,
+        "outdated": false,
+        "version_source": "registry",
+        "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+        "quality": "ok",
+        "dedup_key": "9c2edb858d30d985",
+        "section_id": "panel2026mas_vestacka_inteligencija",
+        "content_hash": "83547788e9f9b420",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "page": 0,
+        "keywords": "lista predmeta; master Informatika; Veštačka inteligencija; prva godina; nastavni plan",
+        "generated": false,
+        "llm_model": "deepseek-flash",
+        "page_type": "studijski_program",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "block_type": "table_overview",
+        "questions": "Koji su svi predmeti prve godine master studija na modulu Veštačka inteligencija?; Da li je Stručna praksa obavezna na masteru?; Koji predmeti ulaze u prvu godinu master studija?",
+        "program": "Informatika",
+        "level": "master",
+        "doc_kind": "chunk",
+        "embed_truncated": false
+      },
+      "distance": 0.1339,
+      "similarity": 0.8661,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "I godina — predmeti: Odabrana poglavlja matematike; Mašinsko učenje; Duboko učenje; Obrada i analiza velikih količina podataka; Studijski istraživački rad 1; Izborni predmet iz grupe V; Stručna praksa; Studijski istraživački rad 2; Završni rad",
+      "chars": 380,
+      "words": 56,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "lista predmeta; master Informatika; Veštačka inteligencija; prva godina; nastavni plan"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-47ec6d3c-005",
+      "document": "[Informatika › Master › Računarske nauke | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nI godina — Semestar: 2. | Šifra: 25.IN2040 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 3\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 11-13 | Fond časova DON: 0-2 | ESPB: 60",
+      "metadata": {
+        "type": "web",
+        "keywords": "završni rad; MAS Informatika; I godina; semestar 2; ESPB; zbir fonda časova; Računarske nauke",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, modul Računarske nauke (akreditacija 2026), za I godinu, semestar 2. Prikazuje završni rad i zbir fonda časova i ESPB za godinu.",
+        "dedup_key": "a11ae1cdc28e230f",
+        "page": 0,
+        "page_title": "Informatika",
+        "breadcrumb": "Informatika › Master › Računarske nauke",
+        "status": "enrolling",
+        "prompt_version": "2026-10-11.1",
+        "ingested_at": "2026-10-14T21:50:06",
+        "block_type": "table",
+        "embed_truncated": false,
+        "valid_for": "upis od 2026/27",
+        "llm_model": "deepseek-flash",
+        "filename": "Informatika › Master › Računarske nauke",
+        "module": "Računarske nauke",
+        "ui_hidden": false,
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "page_type": "studijski_program",
+        "version_source": "registry",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_rac_nauke",
+        "quality": "ok",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "questions": "Koliko ESPB nosi završni rad na master studijama?; Koliki je ukupan fond časova predavanja i vežbi u prvoj godini master studija?; U kom semestru se polaže završni rad?",
+        "level": "master",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "accreditation_year": 2026,
+        "issues": "zbir prikazan kao raspon (11-13, 0-2) — moguće više varijanti izbornih predmeta",
+        "generated": false,
+        "hidden_by_default": true,
+        "content_hash": "268875c8b30bc61f",
+        "program": "Informatika",
+        "section_id": "panel2026mas_rac_nauke",
+        "doc_kind": "chunk",
+        "outdated": false
+      },
+      "distance": 0.1342,
+      "similarity": 0.8658,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "I godina — Semestar: 2. | Šifra: 25.IN2040 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 3\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 11-13 | Fond časova DON: 0-2 | ESPB: 60",
+      "chars": 394,
+      "words": 77,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "završni rad; MAS Informatika; I godina; semestar 2; ESPB; zbir fonda časova; Računarske nauke"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-11d5b324-007",
+      "document": "[Informatika › Master › Veštačka inteligencija | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nI godina — Semestar: 2. | Šifra: 25.IN2040 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 3\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 10-12 | Fond časova DON: 0-2 | ESPB: 60",
+      "metadata": {
+        "issues": "zbir prikazuje fond vežbi i DON kao opseg (10-12, 0-2)",
+        "llm_model": "deepseek-flash",
+        "quality": "ok",
+        "accreditation_year": 2026,
+        "hidden_by_default": true,
+        "page": 0,
+        "section_id": "panel2026mas_vestacka_inteligencija",
+        "prompt_version": "2026-10-11.1",
+        "filename": "Informatika › Master › Veštačka inteligencija",
+        "status": "enrolling",
+        "page_type": "studijski_program",
+        "keywords": "Završni rad; 25.IN2040; master Informatika; Veštačka inteligencija; ESPB 60; zbir",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "content_hash": "a364d6eab831e085",
+        "dedup_key": "f8a7cd0a67ce6c05",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "embed_truncated": false,
+        "valid_for": "upis od 2026/27",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "block_type": "table",
+        "type": "web",
+        "module": "Veštačka inteligencija",
+        "ingested_at": "2026-10-14T21:50:06",
+        "outdated": false,
+        "ui_hidden": false,
+        "version_source": "registry",
+        "doc_kind": "chunk",
+        "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+        "generated": false,
+        "page_title": "Informatika",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_vestacka_inteligencija",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, modul Veštačka inteligencija (akreditacija 2026), prva godina. Prikazuje Završni rad u drugom semestru i zbir časova i ESPB bodova za prvu godinu.",
+        "questions": "Koliko ESPB bodova nosi Završni rad na masteru?; Koliki je ukupan broj ESPB bodova u prvoj godini master studija?; Koja je šifra predmeta Završni rad?",
+        "program": "Informatika",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "level": "master"
+      },
+      "distance": 0.1348,
+      "similarity": 0.8652,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "I godina — Semestar: 2. | Šifra: 25.IN2040 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 3\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 10-12 | Fond časova DON: 0-2 | ESPB: 60",
+      "chars": 400,
+      "words": 77,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Završni rad; 25.IN2040; master Informatika; Veštačka inteligencija; ESPB 60; zbir"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-vmap-informatika-master",
+      "document": "[Informatika › Pregled verzija studijskog programa | automatski generisano iz registra programa — proveriti na izvoru]\nPregled verzija studijskog programa Informatika — master akademske studije (MAS), stanje na dan 14.10.2026:\n• MAS Informatika — akreditacija 2026 — aktuelni program (upis u toku); upis od 2026/27: 2 modula: Veštačka inteligencija, Računarske nauke.\n• MAS Informatika — akreditacija 2019 — prethodni program (važi za ranije upisane studente); studenti upisani 2019/20–2025/26: 2 modula: Nauka o podacima, Računarske nauke.\n• Stari programi (više se ne upisuju): MAS Informatika — akreditacija 2016 sa izmenama, MAS Informatika — akreditacija 2016, MAS Informatika — akreditacija 2011.",
+      "metadata": {
+        "block_type": "version_map",
+        "filename": "Informatika › Pregled verzija studijskih programa",
+        "embed_truncated": false,
+        "ingested_at": "2026-10-14T21:50:07",
+        "prompt_version": "2026-10-11.1",
+        "ui_hidden": false,
+        "version_source": "none",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "breadcrumb": "Informatika › Pregled verzija studijskih programa",
+        "level": "master",
+        "llm_model": "deepseek-flash",
+        "content_hash": "367e68785256c95b",
+        "program": "Informatika",
+        "page_type": "studijski_program",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "outdated": false,
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#vmap-informatika-master",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "hidden_by_default": false,
+        "generated": true,
+        "section_id": "vmap-informatika-master",
+        "page_title": "Informatika",
+        "doc_kind": "version_map",
+        "page": 0,
+        "type": "web",
+        "dedup_key": "92d4103f0abe1b3f"
+      },
+      "distance": 0.1354,
+      "similarity": 0.8646,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Pregled verzija studijskih programa",
+      "page_title": "Informatika",
+      "doc_kind": "version_map",
+      "status": "",
+      "body": "Pregled verzija studijskog programa Informatika — master akademske studije (MAS), stanje na dan 14.10.2026:\n• MAS Informatika — akreditacija 2026 — aktuelni program (upis u toku); upis od 2026/27: 2 modula: Veštačka inteligencija, Računarske nauke.\n• MAS Informatika — akreditacija 2019 — prethodni program (važi za ranije upisane studente); studenti upisani 2019/20–2025/26: 2 modula: Nauka o podacima, Računarske nauke.\n• Stari programi (više se ne upisuju): MAS Informatika — akreditacija 2016 sa izmenama, MAS Informatika — akreditacija 2016, MAS Informatika — akreditacija 2011.",
+      "chars": 702,
+      "words": 99,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "generated",
+          "value": "True"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:07"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-47811578-020",
+      "document": "[Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima | MAS Informatika — akreditacija 2019 | prethodni program (važi za ranije upisane studente) | studenti upisani 2019/20–2025/26]\nI godina — Semestar: 2 | Šifra: 19.IN1009 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 6\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 14 | Fond časova DON: 16 | ESPB: 60",
+      "metadata": {
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "status": "phase_out",
+        "llm_model": "deepseek-flash",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2019mas_nauk_o_podacima",
+        "quality": "ok",
+        "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima",
+        "questions": "Koliko ESPB nosi Završni rad na master studijama?; Koliki je ukupan fond časova i ESPB na prvoj godini master studija?; Koja je šifra predmeta Završni rad?",
+        "keywords": "Završni rad; 19.IN1009; master studije; ESPB; zbir; prva godina",
+        "filename": "Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima",
+        "content_hash": "9db00ed4f20b947a",
+        "hidden_by_default": true,
+        "ingested_at": "2026-10-14T21:50:06",
+        "level": "master",
+        "page": 0,
+        "page_type": "studijski_program",
+        "embed_truncated": false,
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "doc_kind": "chunk",
+        "type": "web",
+        "accreditation_year": 2019,
+        "page_title": "Informatika",
+        "section_id": "panel2019mas_nauk_o_podacima",
+        "module": "Nauka o podacima",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, akreditacija 2019, modul Nauka o podacima — prikaz predmeta Završni rad i zbirni fond časova prve godine.",
+        "valid_for": "studenti upisani 2019/20–2025/26",
+        "program": "Informatika",
+        "dedup_key": "6548ae198e1c6f0a",
+        "block_type": "table",
+        "prompt_version": "2026-10-11.1",
+        "issues": "dva zapisa spojena u jedan chunk (predmet i zbir)",
+        "generated": false,
+        "ui_hidden": false,
+        "version_source": "registry",
+        "outdated": false,
+        "version_label": "MAS Informatika — akreditacija 2019"
+      },
+      "distance": 0.1355,
+      "similarity": 0.8645,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "phase_out",
+      "body": "I godina — Semestar: 2 | Šifra: 19.IN1009 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 6\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 14 | Fond časova DON: 16 | ESPB: 60",
+      "chars": 472,
+      "words": 86,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Završni rad; 19.IN1009; master studije; ESPB; zbir; prva godina"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-11d5b324-002",
+      "document": "[Informatika › Master › Veštačka inteligencija | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nI godina — Semestar: 1. | Šifra: 19.IN1012 | Tip: NS | Predmet: Duboko učenje | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "metadata": {
+        "dedup_key": "65d3549c581e597b",
+        "version_source": "registry",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_vestacka_inteligencija",
+        "content_hash": "c6320ab4983d6af8",
+        "section_id": "panel2026mas_vestacka_inteligencija",
+        "level": "master",
+        "filename": "Informatika › Master › Veštačka inteligencija",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, modul Veštačka inteligencija (akreditacija 2026), prva godina, prvi semestar. Prikazuje predmet Duboko učenje.",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "type": "web",
+        "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+        "prompt_version": "2026-10-11.1",
+        "status": "enrolling",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "embed_truncated": false,
+        "ingested_at": "2026-10-14T21:50:06",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "page_type": "studijski_program",
+        "llm_model": "deepseek-flash",
+        "program": "Informatika",
+        "block_type": "table",
+        "doc_kind": "chunk",
+        "questions": "Koliko ESPB bodova nosi Duboko učenje?; Koji je fond časova predavanja i vežbi za Duboko učenje?; Koja je šifra predmeta Duboko učenje?",
+        "ui_hidden": false,
+        "accreditation_year": 2026,
+        "generated": false,
+        "hidden_by_default": true,
+        "module": "Veštačka inteligencija",
+        "outdated": false,
+        "page": 0,
+        "valid_for": "upis od 2026/27",
+        "page_title": "Informatika",
+        "keywords": "Duboko učenje; 19.IN1012; master Informatika; Veštačka inteligencija; ESPB 6; prvi semestar",
+        "quality": "ok"
+      },
+      "distance": 0.1356,
+      "similarity": 0.8644,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "I godina — Semestar: 1. | Šifra: 19.IN1012 | Tip: NS | Predmet: Duboko učenje | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "chars": 296,
+      "words": 55,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Duboko učenje; 19.IN1012; master Informatika; Veštačka inteligencija; ESPB 6; prvi semestar"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-92bb8f98-021",
+      "document": "[Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke | MAS Informatika — akreditacija 2019 | prethodni program (važi za ranije upisane studente) | studenti upisani 2019/20–2025/26]\nI godina — Semestar: 2 | Šifra: 19.IN2005 | Tip: NS | Predmet: Studijski istraživački rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 12 | ESPB: 12",
+      "metadata": {
+        "quality": "ok",
+        "version_source": "registry",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "accreditation_year": 2019,
+        "llm_model": "deepseek-flash",
+        "keywords": "Studijski istraživački rad; master Informatika; akreditacija 2019; drugi semestar; ESPB; DON; 19.IN2005",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, akreditacija 2019, modul Računarske nauke — prva godina, drugi semestar. Prikazuje obavezan predmet Studijski istraživački rad sa 12 ESPB.",
+        "version_label": "MAS Informatika — akreditacija 2019",
+        "doc_kind": "chunk",
+        "generated": false,
+        "level": "master",
+        "hidden_by_default": true,
+        "prompt_version": "2026-10-11.1",
+        "type": "web",
+        "block_type": "table",
+        "page_type": "studijski_program",
+        "module": "Računarske nauke",
+        "status": "phase_out",
+        "questions": "Koliko ESPB bodova nosi Studijski istraživački rad na master studijama?; Koliki je fond časova DON za Studijski istraživački rad?; Koja je šifra predmeta Studijski istraživački rad?",
+        "ui_hidden": false,
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "page_title": "Informatika",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2019mas_rac_nauke",
+        "ingested_at": "2026-10-14T21:50:06",
+        "program": "Informatika",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "section_id": "panel2019mas_rac_nauke",
+        "page": 0,
+        "embed_truncated": false,
+        "content_hash": "63da6e30a1d4588a",
+        "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+        "valid_for": "studenti upisani 2019/20–2025/26",
+        "filename": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+        "dedup_key": "43582d5dfdf5690e",
+        "outdated": false
+      },
+      "distance": 0.1361,
+      "similarity": 0.8639,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "phase_out",
+      "body": "I godina — Semestar: 2 | Šifra: 19.IN2005 | Tip: NS | Predmet: Studijski istraživački rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 12 | ESPB: 12",
+      "chars": 387,
+      "words": 64,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Studijski istraživački rad; master Informatika; akreditacija 2019; drugi semestar; ESPB; DON; 19.IN2005"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-11d5b324-001",
+      "document": "[Informatika › Master › Veštačka inteligencija | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nI godina — Semestar: 1. | Šifra: 25.IN2029 | Tip: TM | Predmet: Mašinsko učenje | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "metadata": {
+        "program": "Informatika",
+        "block_type": "table",
+        "outdated": false,
+        "generated": false,
+        "status": "enrolling",
+        "dedup_key": "63accc338f3b9115",
+        "keywords": "Mašinsko učenje; 25.IN2029; master Informatika; Veštačka inteligencija; ESPB 6; prvi semestar",
+        "content_hash": "9d7eb10cc4641330",
+        "page_type": "studijski_program",
+        "filename": "Informatika › Master › Veštačka inteligencija",
+        "page": 0,
+        "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+        "type": "web",
+        "version_source": "registry",
+        "questions": "Koliko ESPB bodova ima predmet Mašinsko učenje na masteru?; Koji je fond časova za Mašinsko učenje?; Koja je šifra predmeta Mašinsko učenje?",
+        "page_title": "Informatika",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "valid_for": "upis od 2026/27",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_vestacka_inteligencija",
+        "ui_hidden": false,
+        "level": "master",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "section_id": "panel2026mas_vestacka_inteligencija",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, modul Veštačka inteligencija (akreditacija 2026), prva godina, prvi semestar. Prikazuje obavezan predmet Mašinsko učenje.",
+        "module": "Veštačka inteligencija",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "quality": "ok",
+        "llm_model": "deepseek-flash",
+        "accreditation_year": 2026,
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "doc_kind": "chunk",
+        "prompt_version": "2026-10-11.1",
+        "ingested_at": "2026-10-14T21:50:06",
+        "hidden_by_default": true,
+        "embed_truncated": false
+      },
+      "distance": 0.1375,
+      "similarity": 0.8625,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Veštačka inteligencija",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "I godina — Semestar: 1. | Šifra: 25.IN2029 | Tip: TM | Predmet: Mašinsko učenje | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "chars": 298,
+      "words": 55,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Mašinsko učenje; 25.IN2029; master Informatika; Veštačka inteligencija; ESPB 6; prvi semestar"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-92bb8f98-022",
+      "document": "[Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke | MAS Informatika — akreditacija 2019 | prethodni program (važi za ranije upisane studente) | studenti upisani 2019/20–2025/26]\nI godina — Semestar: 2 | Šifra: 19.IN1009 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 6\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 14-16 | Fond časova DON: 16 | ESPB: 60",
+      "metadata": {
+        "level": "master",
+        "hidden_by_default": true,
+        "keywords": "Završni rad; master Informatika; akreditacija 2019; drugi semestar; ESPB; zbir; 19.IN1009",
+        "page_type": "studijski_program",
+        "embed_truncated": false,
+        "doc_kind": "chunk",
+        "page_title": "Informatika",
+        "outdated": false,
+        "prompt_version": "2026-10-11.1",
+        "type": "web",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "questions": "Koliko ESPB bodova nosi Završni rad na master studijama?; Koliki je ukupan broj ESPB bodova u prvoj godini master studija?; Koja je šifra predmeta Završni rad?",
+        "module": "Računarske nauke",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, akreditacija 2019, modul Računarske nauke — prva godina, drugi semestar. Prikazuje obavezan Završni rad i zbir časova i ESPB bodova za prvu godinu.",
+        "status": "phase_out",
+        "ui_hidden": false,
+        "valid_for": "studenti upisani 2019/20–2025/26",
+        "content_hash": "b7f99b808f3c76d0",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "dedup_key": "e959af105377618d",
+        "block_type": "table",
+        "section_id": "panel2019mas_rac_nauke",
+        "version_source": "registry",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "generated": false,
+        "version_label": "MAS Informatika — akreditacija 2019",
+        "page": 0,
+        "ingested_at": "2026-10-14T21:50:06",
+        "accreditation_year": 2019,
+        "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+        "llm_model": "deepseek-flash",
+        "filename": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+        "quality": "ok",
+        "program": "Informatika",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2019mas_rac_nauke"
+      },
+      "distance": 0.1375,
+      "similarity": 0.8625,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "phase_out",
+      "body": "I godina — Semestar: 2 | Šifra: 19.IN1009 | Tip: NS | Predmet: Završni rad | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 0 | ESPB: 6\nI godina — Zbir | Fond časova predavanja: 12 | Fond časova vežbe: 14-16 | Fond časova DON: 16 | ESPB: 60",
+      "chars": 475,
+      "words": 85,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Završni rad; master Informatika; akreditacija 2019; drugi semestar; ESPB; zbir; 19.IN1009"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-92bb8f98-011",
+      "document": "[Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke | MAS Informatika — akreditacija 2019 | prethodni program (važi za ranije upisane studente) | studenti upisani 2019/20–2025/26]\nI godina — Semestar: 2 | Šifra: 19.IN2I02 | Predmet: Izbroni predmet iz grupe N (bira se 1 od 7 ) | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 5",
+      "metadata": {
+        "generated": false,
+        "outdated": false,
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "page_type": "studijski_program",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "questions": "Koliko predmeta iz grupe N se bira u drugom semestru master studija?; Koliko ESPB bodova nosi izborni predmet iz grupe N?; Koji je fond časova za izborne predmete iz grupe N?",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2019mas_rac_nauke",
+        "dedup_key": "1825d5fe4a3f56a0",
+        "quality": "ok",
+        "block_type": "table",
+        "page_title": "Informatika",
+        "page": 0,
+        "keywords": "izborni predmet grupa N; master Informatika; akreditacija 2019; drugi semestar; ESPB; 19.IN2I02",
+        "hidden_by_default": true,
+        "embed_truncated": false,
+        "program": "Informatika",
+        "issues": "moguća greška u kucanju: 'Izbroni' umesto 'Izborni'",
+        "llm_model": "deepseek-flash",
+        "doc_kind": "chunk",
+        "section_id": "panel2019mas_rac_nauke",
+        "content_hash": "1dda367ec89e5a67",
+        "level": "master",
+        "prompt_version": "2026-10-11.1",
+        "ingested_at": "2026-10-14T21:50:06",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, akreditacija 2019, modul Računarske nauke — prva godina, drugi semestar. Prikazuje izborni predmet iz grupe N gde se bira jedan od sedam predmeta.",
+        "accreditation_year": 2019,
+        "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+        "status": "phase_out",
+        "version_source": "registry",
+        "module": "Računarske nauke",
+        "ui_hidden": false,
+        "valid_for": "studenti upisani 2019/20–2025/26",
+        "version_label": "MAS Informatika — akreditacija 2019",
+        "type": "web",
+        "filename": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke"
+      },
+      "distance": 0.1376,
+      "similarity": 0.8624,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "phase_out",
+      "body": "I godina — Semestar: 2 | Šifra: 19.IN2I02 | Predmet: Izbroni predmet iz grupe N (bira se 1 od 7 ) | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 5",
+      "chars": 393,
+      "words": 69,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "izborni predmet grupa N; master Informatika; akreditacija 2019; drugi semestar; ESPB; 19.IN2I02"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-2f256dd7-000",
+      "document": "[Informatika › Doktorske]\nDoktorske akademske studije traju 3 godine (6 semestara). Za to vreme student treba da sakupi 180 ESPB bodova. Nakon osvojenih 180 ESPB bodova i odbranjene Doktorske disertacije, student stiče naučni naziv odnosno doktor nauka - računarske nauke.\nUpis\nNa doktorske akademske studije iz oblasti informatike/računarstva mogu se upisati:\n• magistri informatičkih/računarskih nauka (VII2 stepen stručne spreme);\n• specijalisti informatičkih/računarskih nauka;\n• studenti poslediplomskih (magistarskih ili specijalističkih) studija prema propisima koji su važili pre stupanja na snagu Zakona o visokom obrazovanju, ako su na diplomskim studijama ostvarili procečnu ocenu ne manju od 8,00;\n• lica sa završenim diplomskim akademskim studijama iz oblasti informatike/računarstva, obima 300 ESPB, sa prosečnom ocenom ne manjom od 8,00;\n• lica sa završenim četvorogodišnjim diplomskim studijama iz oblasti informatike/računarstva, koje odgovaraju obimu od 300 ESPB, prema propisima koji su važili pre stupanja na snagu Zakona o visokom obrazovanju, ako su na diplomskim studijama ostvarili prosečnu ocenu ne manju od 8,00;",
+      "metadata": {
+        "page": 0,
+        "filename": "Informatika › Doktorske",
+        "page_title": "Informatika",
+        "context": "Deo stranice Informatika na sajtu IMI PMF Kragujevac, sekcija Doktorske studije. Tekst opisuje trajanje doktorskih akademskih studija, broj ESPB bodova i uslove za upis.",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "dedup_key": "62f86dbc6cb0d670",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije?doktorske",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "ingested_at": "2026-10-14T21:50:06",
+        "generated": false,
+        "keywords": "doktorske akademske studije; 180 ESPB; 6 semestara; doktor nauka - računarske nauke; uslovi za upis; VII2 stepen; prosečna ocena 8,00",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel5inf",
+        "breadcrumb": "Informatika › Doktorske",
+        "prompt_version": "2026-10-11.1",
+        "llm_model": "deepseek-flash",
+        "ui_hidden": false,
+        "questions": "Koliko traju doktorske akademske studije informatike?; Koliko ESPB bodova je potrebno za doktorske studije?; Koji naučni naziv stiče student nakon odbrane doktorske disertacije?; Ko može da se upiše na doktorske studije informatike?",
+        "hidden_by_default": true,
+        "section_id": "panel5inf",
+        "type": "web",
+        "quality": "ok",
+        "version_source": "none",
+        "embed_truncated": false,
+        "outdated": false,
+        "content_hash": "9a2dde524f6b0ee2",
+        "block_type": "text",
+        "doc_kind": "chunk",
+        "page_type": "studijski_program"
+      },
+      "distance": 0.1378,
+      "similarity": 0.8622,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije?doktorske",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Doktorske",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "",
+      "body": "Doktorske akademske studije traju 3 godine (6 semestara). Za to vreme student treba da sakupi 180 ESPB bodova. Nakon osvojenih 180 ESPB bodova i odbranjene Doktorske disertacije, student stiče naučni naziv odnosno doktor nauka - računarske nauke.\nUpis\nNa doktorske akademske studije iz oblasti informatike/računarstva mogu se upisati:\n• magistri informatičkih/računarskih nauka (VII2 stepen stručne spreme);\n• specijalisti informatičkih/računarskih nauka;\n• studenti poslediplomskih (magistarskih ili specijalističkih) studija prema propisima koji su važili pre stupanja na snagu Zakona o visokom obrazovanju, ako su na diplomskim studijama ostvarili procečnu ocenu ne manju od 8,00;\n• lica sa završenim diplomskim akademskim studijama iz oblasti informatike/računarstva, obima 300 ESPB, sa prosečnom ocenom ne manjom od 8,00;\n• lica sa završenim četvorogodišnjim diplomskim studijama iz oblasti informatike/računarstva, koje odgovaraju obimu od 300 ESPB, prema propisima koji su važili pre stupanja na snagu Zakona o visokom obrazovanju, ako su na diplomskim studijama ostvarili prosečnu ocenu ne manju od 8,00;",
+      "chars": 1138,
+      "words": 156,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "doktorske akademske studije; 180 ESPB; 6 semestara; doktor nauka - računarske nauke; uslovi za upis; VII2 stepen; prosečna ocena 8,00"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-92bb8f98-001",
+      "document": "[Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke | MAS Informatika — akreditacija 2019 | prethodni program (važi za ranije upisane studente) | studenti upisani 2019/20–2025/26]\nI godina — Semestar: 1 | Šifra: 19.IN2001 | Tip: NS | Predmet: Veštačka inteligencija | Fond časova predavanja: 2 | Fond časova vežbe: 3 | Fond časova DON: 0 | ESPB: 6",
+      "metadata": {
+        "hidden_by_default": true,
+        "doc_kind": "chunk",
+        "valid_for": "studenti upisani 2019/20–2025/26",
+        "keywords": "Veštačka inteligencija; master Informatika; akreditacija 2019; Računarske nauke; prvi semestar; ESPB; 19.IN2001",
+        "accreditation_year": 2019,
+        "embed_truncated": false,
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "filename": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "prompt_version": "2026-10-11.1",
+        "version_label": "MAS Informatika — akreditacija 2019",
+        "generated": false,
+        "status": "phase_out",
+        "level": "master",
+        "page": 0,
+        "module": "Računarske nauke",
+        "section_id": "panel2019mas_rac_nauke",
+        "content_hash": "88378d926a66cb9f",
+        "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+        "version_source": "registry",
+        "page_title": "Informatika",
+        "quality": "ok",
+        "llm_model": "deepseek-flash",
+        "page_type": "studijski_program",
+        "questions": "Koliko ESPB bodova nosi predmet Veštačka inteligencija na master studijama?; Koji je fond časova predavanja i vežbi za predmet Veštačka inteligencija?; Koja je šifra predmeta Veštačka inteligencija u prvom semestru master studija?",
+        "ingested_at": "2026-10-14T21:50:06",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2019mas_rac_nauke",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "outdated": false,
+        "ui_hidden": false,
+        "type": "web",
+        "block_type": "table",
+        "dedup_key": "6ddd9059aa5deaad",
+        "program": "Informatika",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, akreditacija 2019, modul Računarske nauke — prva godina, prvi semestar. Prikazuje obavezan predmet Veštačka inteligencija sa fondom časova i ESPB bodovima."
+      },
+      "distance": 0.1385,
+      "similarity": 0.8615,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "phase_out",
+      "body": "I godina — Semestar: 1 | Šifra: 19.IN2001 | Tip: NS | Predmet: Veštačka inteligencija | Fond časova predavanja: 2 | Fond časova vežbe: 3 | Fond časova DON: 0 | ESPB: 6",
+      "chars": 381,
+      "words": 63,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Veštačka inteligencija; master Informatika; akreditacija 2019; Računarske nauke; prvi semestar; ESPB; 19.IN2001"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-11d5b324-017",
+      "document": "[Informatika › Master › Veštačka inteligencija / Računarske nauke | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nIzborni predmeti grupe V — Šifra: 19.IN1019 | Tip: NS | Izborni predmeti grupe V: Master izborni seminar | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "metadata": {
+        "section_id": "panel2026mas_vestacka_inteligencija",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, modul Veštačka inteligencija (akreditacija 2026), sekcija izbornih predmeta grupe V. Prikazuje podatke o predmetu Master izborni seminar.",
+        "page_title": "Informatika",
+        "quality": "ok",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "filename": "Informatika › Master › Veštačka inteligencija / Računarske nauke",
+        "status": "enrolling",
+        "valid_for": "upis od 2026/27",
+        "generated": false,
+        "version_source": "registry",
+        "page_type": "studijski_program",
+        "dedup_key": "8541abae5dc6a57a",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "ui_hidden": false,
+        "content_hash": "0fa47add7232ff68",
+        "block_type": "table",
+        "program": "Informatika",
+        "ingested_at": "2026-10-14T21:50:06",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_vestacka_inteligencija",
+        "module": "Veštačka inteligencija, Računarske nauke",
+        "questions": "Koliko ESPB bodova nosi Master izborni seminar?; Koji je fond časova predavanja i vežbi za Master izborni seminar?; Koja je šifra predmeta Master izborni seminar?",
+        "llm_model": "deepseek-flash",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "doc_kind": "chunk",
+        "page": 0,
+        "accreditation_year": 2026,
+        "hidden_by_default": true,
+        "type": "web",
+        "breadcrumb": "Informatika › Master › Veštačka inteligencija / Računarske nauke",
+        "prompt_version": "2026-10-11.1",
+        "level": "master",
+        "outdated": false,
+        "keywords": "Master izborni seminar; 19.IN1019; izborni predmeti grupe V; ESPB 6; master Informatika",
+        "embed_truncated": false
+      },
+      "distance": 0.1386,
+      "similarity": 0.8614,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Veštačka inteligencija / Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "Izborni predmeti grupe V — Šifra: 19.IN1019 | Tip: NS | Izborni predmeti grupe V: Master izborni seminar | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "chars": 342,
+      "words": 61,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Master izborni seminar; 19.IN1019; izborni predmeti grupe V; ESPB 6; master Informatika"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-47811578-006",
+      "document": "[Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima | MAS Informatika — akreditacija 2019 | prethodni program (važi za ranije upisane studente) | studenti upisani 2019/20–2025/26]\nI godina — Semestar: 1 | Šifra: 19.IN1012 | Tip: TM | Predmet: Duboko učenje | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "metadata": {
+        "dedup_key": "b662c9a4dab8142c",
+        "ui_hidden": false,
+        "embed_truncated": false,
+        "content_hash": "e83607621652420b",
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "section_id": "panel2019mas_nauk_o_podacima",
+        "page_title": "Informatika",
+        "llm_model": "deepseek-flash",
+        "generated": false,
+        "ingested_at": "2026-10-14T21:50:06",
+        "type": "web",
+        "valid_for": "studenti upisani 2019/20–2025/26",
+        "level": "master",
+        "page_type": "studijski_program",
+        "prompt_version": "2026-10-11.1",
+        "version_label": "MAS Informatika — akreditacija 2019",
+        "hidden_by_default": true,
+        "quality": "ok",
+        "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima",
+        "questions": "Koliko ESPB bodova nosi predmet Duboko učenje?; Koji je fond časova za predmet Duboko učenje?; Koji je tip predmeta Duboko učenje?",
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2019mas_nauk_o_podacima",
+        "filename": "Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima",
+        "outdated": false,
+        "context": "Deo nastavnog plana master akademskih studija Informatika, akreditacija 2019, modul Nauka o podacima — prva godina, prvi semestar. Prikazuje predmet Duboko učenje sa fondom časova i ESPB bodovima.",
+        "doc_kind": "chunk",
+        "accreditation_year": 2019,
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "status": "phase_out",
+        "version_source": "registry",
+        "block_type": "table",
+        "program": "Informatika",
+        "keywords": "Duboko učenje; 19.IN1012; Nauka o podacima; MAS Informatika 2019; prvi semestar; ESPB 6",
+        "module": "Nauka o podacima",
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "page": 0
+      },
+      "distance": 0.1388,
+      "similarity": 0.8612,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Master akademske studije akreditovane 2019 - Nauka o podacima",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "phase_out",
+      "body": "I godina — Semestar: 1 | Šifra: 19.IN1012 | Tip: TM | Predmet: Duboko učenje | Fond časova predavanja: 2 | Fond časova vežbe: 2 | Fond časova DON: 0 | ESPB: 6",
+      "chars": 372,
+      "words": 64,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Duboko učenje; 19.IN1012; Nauka o podacima; MAS Informatika 2019; prvi semestar; ESPB 6"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    },
+    {
+      "id": "e2864d5f82-11d5b324-004",
+      "document": "[Informatika › Master › Veštačka inteligencija / Računarske nauke | MAS Informatika — akreditacija 2026 | aktuelni program (upis u toku) | upis od 2026/27]\nI godina — Semestar: 1. | Šifra: 25.IN2031 | Tip: TM | Predmet: Studijski istraživački rad 1 | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 6 | ESPB: 6\nI godina — Semestar: 2. | Predmet: Izborni predmet iz grupe V\nI godina — Semestar: 2. | Predmet: Izborni predmet iz grupe V",
+      "metadata": {
+        "source": "https://imi.pmf.kg.ac.rs/informatika-studije#panel2026mas_vestacka_inteligencija",
+        "module": "Veštačka inteligencija, Računarske nauke",
+        "type": "web",
+        "hidden_by_default": true,
+        "page_summary": "Stranica studija informatike na Institutu za matematiku i informatiku prikazuje osnovne, master i doktorske akademske studije, njihove module, nastavne planove, iskustva studenata i česta pitanja.",
+        "outdated": false,
+        "embed_truncated": false,
+        "page": 0,
+        "keywords": "Studijski istraživački rad 1; 25.IN2031; izborni predmeti grupa V; master Informatika; Veštačka inteligencija; ESPB 6",
+        "version_label": "MAS Informatika — akreditacija 2026",
+        "generated": false,
+        "version_source": "registry",
+        "quality": "ok",
+        "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "level": "master",
+        "page_type": "studijski_program",
+        "block_type": "table",
+        "section_id": "panel2026mas_vestacka_inteligencija",
+        "filename": "Informatika › Master › Veštačka inteligencija / Računarske nauke",
+        "ingested_at": "2026-10-14T21:50:06",
+        "llm_model": "deepseek-flash",
+        "ui_hidden": false,
+        "page_title": "Informatika",
+        "doc_kind": "chunk",
+        "prompt_version": "2026-10-11.1",
+        "issues": "izborni predmeti bez šifre i naziva",
+        "questions": "Koliko ESPB nosi Studijski istraživački rad 1?; Koliko izbornih predmeta iz grupe V se sluša u drugom semestru?; Koji je fond časova DON za Studijski istraživački rad 1?",
+        "status": "enrolling",
+        "breadcrumb": "Informatika › Master › Veštačka inteligencija / Računarske nauke",
+        "context": "Deo nastavnog plana master akademskih studija Informatika, modul Veštačka inteligencija (akreditacija 2026), prva godina. Prikazuje predmet Studijski istraživački rad 1 u prvom semestru i dva izborna predmeta iz grupe V u drugom semestru.",
+        "accreditation_year": 2026,
+        "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+        "content_hash": "ed2b8f0ef190492e",
+        "program": "Informatika",
+        "valid_for": "upis od 2026/27",
+        "dedup_key": "182cb9a1802656e6"
+      },
+      "distance": 0.1394,
+      "similarity": 0.8606,
+      "reason": "beyond_k",
+      "reason_detail": "rank 6 > k=5",
+      "url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "page_url": "https://imi.pmf.kg.ac.rs/informatika-studije",
+      "breadcrumb": "Informatika › Master › Veštačka inteligencija / Računarske nauke",
+      "page_title": "Informatika",
+      "doc_kind": "chunk",
+      "status": "enrolling",
+      "body": "I godina — Semestar: 1. | Šifra: 25.IN2031 | Tip: TM | Predmet: Studijski istraživački rad 1 | Fond časova predavanja: 0 | Fond časova vežbe: 0 | Fond časova DON: 6 | ESPB: 6\nI godina — Semestar: 2. | Predmet: Izborni predmet iz grupe V\nI godina — Semestar: 2. | Predmet: Izborni predmet iz grupe V",
+      "chars": 454,
+      "words": 84,
+      "reason_label": "Ranked below the top-k cut-off",
+      "chips": [
+        {
+          "key": "keywords",
+          "value": "Studijski istraživački rad 1; 25.IN2031; izborni predmeti grupa V; master Informatika; Veštačka inteligencija; ESPB 6"
+        },
+        {
+          "key": "quality",
+          "value": "ok"
+        },
+        {
+          "key": "ingested_at",
+          "value": "2026-10-14T21:50:06"
+        },
+        {
+          "key": "llm_model",
+          "value": "deepseek-flash"
+        },
+        {
+          "key": "prompt_version",
+          "value": "2026-10-11.1"
+        },
+        {
+          "key": "hidden_by_default",
+          "value": "True"
+        }
+      ]
+    }
+  ]
+}

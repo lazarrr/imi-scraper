@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "model_loaded": true,
+  "model_error": null,
+  "warming": false,
+  "store": {
+    "path": "data/local_test_store",
+    "collection": "university_knowledge_local_test",
+    "count": 747,
+    "embedding_model": "intfloat/multilingual-e5-large",
+    "distance": "cosine",
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: ",
+    "threshold": 0.7,
+    "fetch_k": 20,
+    "collections": [
+      {
+        "name": "university_knowledge_local_test",
+        "count": 747,
+        "active": true
+      }
+    ]
+  },
+  "size_bytes": 12482985,
+  "size_human": "11.9 MB"
+}

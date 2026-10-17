@@ -124,6 +124,35 @@ class ChromaStore:
     def count(self) -> int:
         return self.collection.count()
 
+    def list_collections(self) -> list[dict]:
+        """Every collection in this store with its chunk count (UI selector)."""
+        out: list[dict] = []
+        for item in self.client.list_collections():
+            name = item if isinstance(item, str) else getattr(item, "name", str(item))
+            try:
+                count = self.client.get_collection(name).count()
+            except Exception:
+                count = -1
+            out.append({"name": name, "count": count, "active": name == self.collection_name})
+        return sorted(out, key=lambda c: (-c["count"], c["name"]))
+
+    def get_chunks(self, ids: list[str]) -> dict:
+        """Full records for the given ids (drill-down in the UI)."""
+        if not ids:
+            return {"ids": [], "documents": [], "metadatas": []}
+        return self.collection.get(ids=ids, include=["documents", "metadatas"])
+
+    def db_size_bytes(self) -> int:
+        """On-disk size of the store folder — shown in the UI header."""
+        total = 0
+        for path in self.path.rglob("*"):
+            try:
+                if path.is_file():
+                    total += path.stat().st_size
+            except OSError:
+                continue
+        return total
+
     def query(self, embedding: list[float], n_results: int, where: dict | None = None) -> dict:
         n = max(1, min(n_results, self.count() or 1))
         return self.collection.query(
