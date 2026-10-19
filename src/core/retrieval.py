@@ -31,7 +31,7 @@ def wants_legacy(query: str) -> bool:
 
 # Applied INSIDE the Chroma query: legacy tables are ~half of all chunks and
 # would otherwise crowd current content out of the candidate list.
-# ($ne also keeps chunks that do not have the key at all.)
+# ($ne also keeps chunks whose status is "unknown" or missing.)
 CURRENT_ONLY_WHERE = {"$and": [{"status": {"$ne": "legacy"}}, {"outdated": {"$ne": True}}]}
 
 

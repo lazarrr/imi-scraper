@@ -66,6 +66,7 @@ def cmd_ingest(args) -> int:
             cached=args.cached,
             keep_low_value=args.keep_low_value,
             include_unreachable=args.include_unreachable,
+            allow_partial_write=args.allow_partial_write,
         )
     except LLMError as exc:
         print(f"ERROR: {exc}")
@@ -80,7 +81,7 @@ def cmd_ingest(args) -> int:
     print(f"Report: {path}")
     if not args.dry_run:
         print("Restart the chatbot so it picks up the new data.")
-    return 1 if any(p.outcome == "failed" for p in report.pages) else 0
+    return 1 if any(p.outcome in ("failed", "partial") for p in report.pages) else 0
 
 
 # --------------------------------------------------------------------------- #
@@ -205,7 +206,8 @@ def cmd_stats(args) -> int:
     store = ChromaStore(_db_path(args), _collection(args))
     metas = store.all_metadatas()
     print(f"\nCollection '{_collection(args)}' at {_db_path(args)}: {len(metas)} chunks\n")
-    for field in ("status", "doc_kind", "page_type", "version_source", "type"):
+    for field in ("status", "doc_kind", "page_type", "version_source", "type",
+                  "curation_status", "curated", "rewritten"):
         counts = Counter(str(m.get(field, "-")) for m in metas)
         print(f"{field:15} " + ", ".join(f"{k}: {v}" for k, v in counts.most_common()))
     pages = Counter(m.get("page_url", "-") for m in metas)
@@ -380,6 +382,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--cached", action="store_true", help="reuse raw pages from data/cache/http")
     p.add_argument("--keep-low-value", action="store_true", help="keep chunks DeepSeek rated boilerplate/low_value")
     p.add_argument("--include-unreachable", action="store_true", help="also index panels no visitor can open")
+    p.add_argument("--allow-partial-write", action="store_true",
+                   help="write the successful sections even if some section failed curation "
+                        "(the page stays uncommitted in state and is retried next run)")
 
     for name, help_text in (("search", "query the collection like the chatbot does"),
                             ("eval", "run the golden questions (hit@k)")):

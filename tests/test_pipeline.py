@@ -44,6 +44,15 @@ def test_full_ingest_then_unchanged_rerun(test_settings, tmp_path):
         assert all(isinstance(v, (str, int, float, bool)) for v in meta.values())
     assert len({m["source"] for m in metas if m["page_url"] == INF_URL}) > 10   # per-section sources
 
+    # status is mandatory on every chunk: the registry status for versioned
+    # text, "unknown" for unversioned content and generated version maps.
+    statuses = {"enrolling", "phase_out", "upcoming", "legacy", "unknown"}
+    assert all(m.get("status") in statuses for m in metas)
+    assert all(m["status"] == "unknown" for m in metas if not m.get("version_label"))
+    assert any(m["status"] == "enrolling" for m in metas)      # 2026 program
+    assert any(m["status"] == "phase_out" for m in metas)      # 2019 program
+    assert all(m["status"] == "unknown" for m in metas if m["page_url"] == NEWS_URL)
+
     # unreachable leftovers are not indexed
     assert not any(m["section_id"] == "panel2018infosn" for m in metas)
 
@@ -66,9 +75,20 @@ def test_full_ingest_then_unchanged_rerun(test_settings, tmp_path):
             and m["page_url"] == INF_URL]
     assert len(vmap) == 1 and "2 modula" in vmap[0] and "3 modula" in vmap[0]
 
-    # DeepSeek enrichment landed in metadata; low-value chunks were dropped
+    # DeepSeek curation produced the final documents
+    assert all(m.get("curated") is True for m in metas if m.get("doc_kind") == "chunk")
+    assert all(m.get("doc_kind") == "chunk" for m in metas if m.get("curated"))
     assert any(m.get("questions") for m in metas)
-    assert sum(p.dropped.get("low_value", 0) for p in report.pages) > 0
+    assert any(m.get("source_evidence") for m in metas)
+    assert report.pages[0].curation_status == "complete"
+    cur = report.pages[0].curation
+    assert cur["sections_failed"] == 0 and cur["chunks_curated"] > 0
+    assert cur["chunks_rejected"] == 0                  # the default fake is honest
+    assert all(m.get("curation_version") for m in metas if m.get("curated"))
+    # context/questions improve the embedding but are never injected into the
+    # chatbot's factual document (the header + curated content only)
+    assert new_doc.split("\n", 1)[1].strip()
+    assert "deo stranice." not in new_doc
 
     # the FAQ still saying "3 smera" is flagged against the registry facts → hidden from the chatbot
     faq = [(m, d) for m, d in zip(metas, docs) if m["section_id"] == "panel_faq" and "3 smera" in d]
@@ -78,7 +98,7 @@ def test_full_ingest_then_unchanged_rerun(test_settings, tmp_path):
     assert versioned and not any(m["outdated"] for m in versioned)    # registry dates those, not the model
 
     # course overview chunks exist for listing questions
-    assert any(m["block_type"] == "table_overview" and "predmeti: Osnovi programiranja" in d
+    assert any("predmeti: Osnovi programiranja" in d
                for m, d in zip(metas, docs) if m["section_id"] == "panel2026rac_nauke")
 
     # drafts: the real one is evidence-checked OK, the fabricated one is not used
@@ -89,6 +109,33 @@ def test_full_ingest_then_unchanged_rerun(test_settings, tmp_path):
     assert not any(m.get("version_label") == "Izmišljen program" for m in metas)
 
     assert "Not indexed — unreachable" in report_path.read_text(encoding="utf-8")
+
+    # curation diagnostics are written next to the report
+    import json
+    curation = json.loads((report_path.parent / "curation.json").read_text(encoding="utf-8"))
+    assert curation and curation[0]["curation_status"] == "complete"
+    assert curation[0]["stats"]["chunks_curated"] > 0
+    assert curation[0]["stats"]["sections_failed"] == 0
+
+    # retrieval regression: the final curated documents answer representative
+    # questions (the hashing embedder is crude, so the queries use the same
+    # vocabulary the page uses — this checks the knowledge made it into Chroma)
+    emb = FakeEmbedder()
+    checks = [
+        ("Koliko modula ima OAS Informatika?", [["dva izborna modula"]]),
+        ("izborni modula Računarske nauke Softversko inženjerstvo",
+         [["Računarske nauke", "Softversko inženjerstvo"]]),
+        ("predmeti prvi semestar ESPB Osnovi programiranja",
+         [["Predmet: Osnovi programiranja", "ESPB: 6"]]),
+        ("razlika stari program akreditacija 2016 novi program 2026",
+         [["2 modula"], ["3 modula"]]),
+    ]
+    # k=100 because FakeEmbedder is a hashing bag-of-words smoke test, not E5;
+    # the production ranking is measured by `run.py eval`.
+    for query, expected in checks:
+        docs = store.query(emb.embed_query(query), 100)["documents"][0]
+        for needles in expected:
+            assert any(all(needle in doc for needle in needles) for doc in docs), (query, needles)
 
     # second run: nothing changed → every page skipped, no LLM calls, same data
     count = store.count()

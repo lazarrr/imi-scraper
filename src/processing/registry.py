@@ -19,6 +19,7 @@ enrollment year arrives):
     phase_out  closed for enrollment, earlier students still study by it
                (enrollment_to + duration(level) + 2 years)
     legacy     older than that
+    unknown    not enough information (e.g. no enrollment year)
 """
 
 from __future__ import annotations

@@ -34,9 +34,9 @@ HEADLINE_KEYS = (
 )
 # ...everything else is rendered as a chip / detail row, in this order first.
 CHIP_KEY_ORDER = (
-    "keywords", "quality", "page", "generated", "ingested_at", "llm_model",
-    "prompt_version", "embed_truncated", "ui_hidden", "hidden_by_default",
-    "content_hash", "dedup_key",
+    "curation_status", "curated", "rewritten", "keywords", "quality", "page",
+    "generated", "ingested_at", "llm_model", "prompt_version", "embed_truncated",
+    "ui_hidden", "hidden_by_default", "content_hash", "dedup_key",
 )
 # Purely mechanical keys the UI can hide behind "show internal metadata".
 INTERNAL_KEYS = frozenset({"dedup_key", "content_hash", "source", "page_url", "url"})
@@ -251,7 +251,7 @@ class RetrievalService:
         out["breadcrumb"] = meta.get("breadcrumb") or meta.get("filename") or ""
         out["page_title"] = meta.get("page_title") or ""
         out["doc_kind"] = meta.get("doc_kind") or meta.get("type") or "chunk"
-        out["status"] = meta.get("status") or ""
+        out["status"] = meta.get("status") or "unknown"
         out["body"] = body
         out["chars"] = len(document)
         out["words"] = len(document.split())

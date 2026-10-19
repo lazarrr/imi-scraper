@@ -15,7 +15,16 @@ import pytest
 from config.settings import Settings
 from src.core.deepseek_client import Usage
 from src.processing.fetcher import FetchResult
-from src.processing.schemas import ChunkEnrichment, EnrichmentBatch, PageAnalysis, RegistryDraftEntry
+from src.processing.schemas import (
+    CuratedChunk,
+    CurationResponse,
+    DiscardedContent,
+    PageAnalysis,
+    ReconcileResponse,
+    RegistryDraftEntry,
+    SectionCuration,
+    SourceEvidence,
+)
 from src.utils.text import fold
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -73,19 +82,50 @@ class FakeFetcher:
         return {t: p for t, p in self.PROBES.get(page_url, {}).items() if t in valid}
 
 
+_SECTION_RE = re.compile(r'<section id="([^"]+)" part="([^"]*)">\n(.*?)\n</section>', re.S)
+_SOURCE_RE = re.compile(r"<source>\n(.*?)\n</source>", re.S)
+_COURSE_NAME_RE = re.compile(r"Predmet: ([^|]+)")
+
+
+def _first_quote(text: str) -> str | None:
+    for line in text.splitlines():
+        line = line.strip()
+        if len(fold(line)) >= 4:
+            return line[:300]
+    return None
+
+
 class FakeClient:
-    """Stands in for DeepSeekClient.  Page analysis drafts one real and one
-    fabricated registry entry; enrichment marks 'Misija'-style text ok and
-    one-line link text as low_value."""
+    """Stands in for DeepSeekClient.
+
+    Page analysis drafts one real and one fabricated registry entry.  Content
+    curation is deterministic and honest by default: it keeps the whole
+    extracted text, turns table rows into row chunks plus an overview, and
+    marks the FAQ's "3 smera" as outdated.  Hooks let tests inject invalid
+    evidence, hallucinated facts, duplicate groups and section failures.
+    """
 
     model = "fake-deepseek"
     thinking = False
     max_workers = 4
 
-    def __init__(self):
+    def __init__(
+        self,
+        *,
+        fail_sections: set[str] | None = None,
+        curation_hook=None,
+        reconcile_hook=None,
+        discard_shorter_than: int = 40,
+    ):
         self.usage = Usage()
         self.calls: list[str] = []
+        self.fail_sections = fail_sections or set()
+        self.curation_hook = curation_hook
+        self.reconcile_hook = reconcile_hook
+        self.discard_shorter_than = discard_shorter_than
         self._lock = threading.Lock()
+
+    # ------------------------------------------------------------------ #
 
     def complete_json(self, system, user, schema, max_tokens):
         with self._lock:
@@ -108,21 +148,117 @@ class FakeClient:
                 page_summary="Kratak opis stranice.",
                 registry_draft=drafts,
             )
-        if schema is EnrichmentBatch:
-            items = []
-            for local_id, text in re.findall(r'<chunk id="(c\d+)">\n(.*?)\n</chunk>', user, re.S):
-                quality = "low_value" if len(text) < 80 else "ok"
-                # the real FAQ still says "3 smera" — contradicts the facts (2 modules)
-                outdated = "PROGRAM FACTS" in user and ("3 smera" in text or "tri smera" in text)
-                items.append(ChunkEnrichment(
-                    id=local_id, context="Deo stranice o studijama.",
-                    questions=["Koliko ESPB ima predmet?"], keywords=["studije"],
-                    quality=quality, issues=["tabela bez zaglavlja"] if "Zbir" in text else [],
-                    outdated=outdated,
-                    outdated_reason="Navodi 3 smera, a aktuelni program ima 2 modula." if outdated else "",
-                ))
-            return EnrichmentBatch(chunks=items)
+        if schema is CurationResponse:
+            parsed = self._parse_sections(user)
+            if self.curation_hook is not None:
+                hooked = self.curation_hook(user, parsed)
+                if hooked is not None:
+                    return hooked
+            return self._curate(parsed)
+        if schema is ReconcileResponse:
+            if self.reconcile_hook is not None:
+                return self.reconcile_hook(user)
+            return ReconcileResponse()
         raise AssertionError(f"unexpected schema {schema}")
+
+    # ------------------------------------------------------------------ #
+
+    @staticmethod
+    def _parse_sections(user: str) -> list[dict]:
+        out: list[dict] = []
+        for sid, part, body in _SECTION_RE.findall(user):
+            source = _SOURCE_RE.search(body)
+            versioned = bool(re.search(r"^versioned: yes$", body, re.M))
+            breadcrumb = re.search(r"^breadcrumb: (.*)$", body, re.M)
+            version = re.search(r"^program_version: (.*)$", body, re.M)
+            out.append({
+                "id": sid,
+                "part": part,
+                "text": source.group(1) if source else body,
+                "versioned": versioned,
+                "breadcrumb": breadcrumb.group(1) if breadcrumb else sid,
+                "version": version.group(1) if version else "",
+            })
+        return out
+
+    def _curate(self, parsed: list[dict]) -> CurationResponse:
+        sections: list[SectionCuration] = []
+        for item in parsed:
+            sid = item["id"]
+            if sid in self.fail_sections:
+                raise RuntimeError(f"forced failure for {sid}")
+            text = item["text"]
+            if len(text.strip()) < self.discard_shorter_than:
+                sections.append(SectionCuration(
+                    source_section_id=sid, status="no_relevant_content",
+                    discarded_content=[DiscardedContent(
+                        source_section_id=sid, description="prekratak/navigacioni tekst",
+                        reason="boilerplate",
+                    )],
+                ))
+                continue
+            chunks: list[CuratedChunk] = []
+            rows = [
+                line.strip() for line in text.splitlines()
+                if line.strip() and " | " in line and any(k in line for k in ("Predmet:", "Šifra:", "Semestar:"))
+            ]
+            if rows:
+                for i in range(0, len(rows), 8):
+                    group = rows[i:i + 8]
+                    name = _COURSE_NAME_RE.search(group[0])
+                    questions = (
+                        [f"Koliko ESPB ima predmet {name.group(1).strip()}?",
+                         f"U kom semestru se sluša {name.group(1).strip()}?"]
+                        if name else ["Koji su predmeti u ovom semestru?"]
+                    )
+                    chunks.append(self._chunk(item, "\n".join(group), group[0], questions))
+                names = []
+                for row in rows:
+                    match = _COURSE_NAME_RE.search(row)
+                    if match and match.group(1).strip() not in names:
+                        names.append(match.group(1).strip())
+                if len(names) >= 2:
+                    overview = f"{item['breadcrumb']} — predmeti: " + "; ".join(names[:20])
+                    chunks.append(self._chunk(item, overview, rows[0], ["Koji predmeti postoje u ovom semestru?"]))
+            else:
+                quote = _first_quote(text)
+                if quote is None:
+                    sections.append(SectionCuration(
+                        source_section_id=sid, status="no_relevant_content",
+                        discarded_content=[DiscardedContent(
+                            source_section_id=sid, description="nema citljivog teksta",
+                            reason="empty",
+                        )],
+                    ))
+                    continue
+                chunks.append(self._chunk(
+                    item, text, quote,
+                    ["Šta je opisano u ovom delu stranice?", "Koje informacije su dostupne studentima?"],
+                ))
+            sections.append(SectionCuration(
+                source_section_id=sid, status="processed", chunks=chunks,
+            ))
+        return CurationResponse(sections=sections)
+
+    @staticmethod
+    def _chunk(item: dict, content: str, quote: str, questions: list[str]) -> CuratedChunk:
+        outdated = (
+            not item["versioned"]
+            and ("3 smera" in content or "tri smera" in content)
+        )
+        return CuratedChunk(
+            content=content,
+            context=f"{item['breadcrumb']} — deo stranice.",
+            questions=questions[:4],
+            keywords=["studije", "informatika"],
+            source_evidence=[SourceEvidence(
+                source_section_id=item["id"], source_excerpt=quote,
+            )],
+            quality="ok",
+            outdated=outdated,
+            outdated_reason="Navodi 3 smera, a aktuelni program ima 2 modula." if outdated else "",
+            issues=["tabela bez zaglavlja"] if "Zbir" in content else [],
+        )
 
 
 class FakeEmbedder:

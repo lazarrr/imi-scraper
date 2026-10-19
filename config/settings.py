@@ -69,12 +69,27 @@ class Settings(BaseSettings):
     CRAWL_MAX_PAGES: int = 500
     RESPECT_ROBOTS: bool = True
 
-    # ── Chunking ─────────────────────────────────────────────────────── #
+    # ── Chunking (deterministic fallback with --no-llm) ──────────────── #
     CHUNK_MAX_TOKENS: int = 300                 # prose
     CHUNK_TABLE_MAX_TOKENS: int = 120           # table rows: 1–2 per chunk → precise course hits
     CHUNK_OVERLAP_TOKENS: int = 40
     MIN_CHUNK_CHARS: int = 30
-    LLM_BATCH_CHUNKS: int = 12                  # chunks per DeepSeek enrichment call
+
+    # ── AI content curation (DeepSeek writes the final chunks) ───────── #
+    # One request carries at most this many source tokens (E5 tokenizer,
+    # conservative for DeepSeek).  Longer sections are split at line /
+    # sentence boundaries; every part is processed and must be returned.
+    CURATION_INPUT_TOKENS: int = 12000
+    CURATION_MAX_OUTPUT_TOKENS: int = 8000
+    # Content size per curated chunk, in E5 tokens.  `target` guides the model,
+    # `max` is enforced deterministically (longer replies are split safely).
+    CURATION_CHUNK_MIN_TOKENS: int = 40
+    CURATION_CHUNK_TARGET_TOKENS: int = 220
+    CURATION_CHUNK_MAX_TOKENS: int = 320
+    CURATION_MAX_WORKERS: int = 4               # parallel requests within one page
+    CURATION_STRICT_FACTS: bool = True          # reject chunks with numbers absent from source
+    CURATION_RECONCILE: bool = True             # page-level duplicate/contradiction pass
+    CURATION_RECONCILE_MAX_CHUNKS: int = 300    # skip the pass above this digest size
 
     # ── Retrieval (search / eval — mirrors the chatbot) ──────────────── #
     TOP_K_RESULTS: int = 5

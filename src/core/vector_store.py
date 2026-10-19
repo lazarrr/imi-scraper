@@ -79,9 +79,15 @@ class ChromaStore:
         embeddings: list[list[float]],
         documents: list[str],
         metadatas: list[dict],
+        delete_stale: bool = True,
     ) -> tuple[int, int]:
         """Upsert this page's chunks, then delete its stale ones.
-        Returns (upserted, deleted)."""
+
+        `delete_stale=False` is used for a partial page (some sections failed):
+        successful sections are upserted, but the last known-good chunks of the
+        failed sections are left untouched.  A later complete run cleans them
+        up.  Returns (upserted, deleted).
+        """
         if len(set(ids)) != len(ids):
             raise ValueError(f"duplicate chunk ids for {page_url}")
         metadatas = [sanitize_metadata(m) for m in metadatas]
@@ -93,6 +99,8 @@ class ChromaStore:
                 documents=documents[i:i + size],
                 metadatas=metadatas[i:i + size],
             )
+        if not delete_stale:
+            return len(ids), 0
         keep = set(ids)
         stale = [x for x in self.page_ids(page_url) if x not in keep]
         for i in range(0, len(stale), size):

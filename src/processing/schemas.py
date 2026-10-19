@@ -6,11 +6,13 @@ Data model of the pipeline.
 Internal structures (dataclasses):
     Page ─┬─ Section (tab panel / heading group / PDF page) ── Block (text | table)
           └─ ...
-    Chunk  — one vector-store entry (text + location + version + enrichment)
+    Chunk  — one vector-store entry (curated content + location + version + labels)
 
 LLM I/O and registry (pydantic — validated):
-    PageAnalysis, RegistryDraftEntry   — DeepSeek call A
-    ChunkEnrichment, EnrichmentBatch   — DeepSeek call B
+    PageAnalysis, RegistryDraftEntry   — DeepSeek page analysis (call A)
+    CuratedChunk, SectionCuration,
+    CurationResponse                   — DeepSeek content curation (call B)
+    ReconcileResponse                  — page-level duplicate/contradiction pass
     ProgramVersion                     — one entry of programs.yaml
 """
 
@@ -22,7 +24,7 @@ from typing import Literal, Optional
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Level = Literal["osnovne", "master", "doktorske"]
-Status = Literal["enrolling", "phase_out", "upcoming", "legacy"]
+Status = Literal["enrolling", "phase_out", "upcoming", "legacy", "unknown"]
 Quality = Literal["ok", "boilerplate", "garbled", "low_value"]
 
 PAGE_TYPES = (
@@ -92,7 +94,7 @@ class VersionInfo:
     level: str
     version_label: str
     accreditation_year: Optional[int]
-    status: str                             # enrolling | phase_out | upcoming | legacy
+    status: str                             # enrolling | phase_out | upcoming | legacy | unknown
     status_label: str                       # Serbian, shown in the chunk header
     valid_for: str
     modules: list[str]
@@ -120,6 +122,13 @@ class Chunk:
     embed_text: str = ""                    # what is embedded (without "passage: ")
     metadata: dict = field(default_factory=dict)
     dropped_reason: Optional[str] = None
+    # ── AI curation provenance (empty/false for deterministic chunks) ── #
+    curated: bool = False
+    curation_status: str = ""
+    curation_issues: list[str] = field(default_factory=list)
+    source_sections: list[str] = field(default_factory=list)
+    evidence: list[dict] = field(default_factory=list)
+    rewritten: bool = False
 
     @property
     def content_hash(self) -> str:
@@ -161,6 +170,11 @@ class PageAnalysis(_Lenient):
 
 
 class ChunkEnrichment(_Lenient):
+    """Labels attached to one final chunk (curated or deterministic).
+
+    Kept as a small internal carrier: `ingest._finalize()` and the report use
+    the same fields for both pipeline modes."""
+
     id: str
     context: str = ""
     questions: list[str] = Field(default_factory=list)
@@ -171,8 +185,79 @@ class ChunkEnrichment(_Lenient):
     outdated_reason: str = ""
 
 
-class EnrichmentBatch(_Lenient):
-    chunks: list[ChunkEnrichment] = Field(default_factory=list)
+# --------------------------------------------------------------------------- #
+#  AI content curation (DeepSeek call B) — strict, validated contract         #
+# --------------------------------------------------------------------------- #
+
+DiscardReason = Literal[
+    "boilerplate", "navigation", "duplicate", "empty", "promotional",
+    "unreadable", "irrelevant", "other",
+]
+CurationStatus = Literal["processed", "no_relevant_content"]
+
+
+class _Strict(BaseModel):
+    # Curation output must have exactly the agreed shape: an unexpected field
+    # means the model drifted, and the client will ask for a corrected reply.
+    model_config = ConfigDict(extra="forbid")
+
+
+class SourceEvidence(_Strict):
+    source_section_id: str = Field(min_length=1)
+    source_excerpt: str = Field(min_length=3)     # verbatim quote from the section
+
+
+class CuratedChunk(_Strict):
+    content: str = Field(min_length=1)            # the final knowledge text
+    context: str = ""
+    questions: list[str] = Field(default_factory=list, max_length=6)
+    keywords: list[str] = Field(default_factory=list, max_length=12)
+    source_evidence: list[SourceEvidence] = Field(min_length=1)
+    quality: Quality = "ok"
+    outdated: bool = False
+    outdated_reason: str = ""
+    issues: list[str] = Field(default_factory=list, max_length=8)
+
+
+class DiscardedContent(_Strict):
+    source_section_id: str = ""
+    description: str = Field(min_length=1, max_length=400)
+    reason: DiscardReason = "other"
+
+
+class SectionCuration(_Strict):
+    source_section_id: str = Field(min_length=1)
+    status: CurationStatus = "processed"
+    chunks: list[CuratedChunk] = Field(default_factory=list)
+    discarded_content: list[DiscardedContent] = Field(default_factory=list, max_length=20)
+    issues: list[str] = Field(default_factory=list, max_length=10)
+
+
+class CurationResponse(_Strict):
+    sections: list[SectionCuration] = Field(default_factory=list)
+    page_issues: list[str] = Field(default_factory=list, max_length=20)
+
+
+# --------------------------------------------------------------------------- #
+#  Page-level reconciliation (duplicates / contradictions across sections)    #
+# --------------------------------------------------------------------------- #
+
+class DuplicateGroup(_Strict):
+    canonical_chunk_id: str = Field(min_length=1)
+    duplicate_chunk_ids: list[str] = Field(default_factory=list, min_length=1)
+    reason: str = ""
+
+
+class Contradiction(_Strict):
+    chunk_ids: list[str] = Field(default_factory=list)
+    description: str = Field(min_length=1)
+
+
+class ReconcileResponse(_Strict):
+    duplicate_groups: list[DuplicateGroup] = Field(default_factory=list)
+    contradictions: list[Contradiction] = Field(default_factory=list)
+    missing_context: list[str] = Field(default_factory=list, max_length=20)
+    page_issues: list[str] = Field(default_factory=list, max_length=20)
 
 
 # --------------------------------------------------------------------------- #
